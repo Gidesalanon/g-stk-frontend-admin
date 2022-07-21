@@ -1,0 +1,688 @@
+input.react-tagsinput-input {
+  width: auto;
+}
+
+._1HaoU {
+  width: 170px !important;
+  height: 40px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breacumbs {
+  width: 100%;
+  box-shadow: 0 0 40px 0 #523f6969;
+  background: #EEF0F8;
+  padding-top: 5px;
+  padding-left: 30px;
+  margin-left: -15px;
+  position: fixed;
+  z-index: 2;
+  top: 60px;
+}
+
+// By DIMON for empty-list
+.empty-list {
+background: url(/bg/error.jpg) center center no-repeat;
+background-size: cover;
+height: 100vh;
+h4{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
+}
+
+.border-none {
+border: none;
+background: none !important;
+}
+// By DIMON for nice modal
+.modal-aside{
+border-top-left-radius: 0.35rem;
+border-bottom-left-radius: 0.35rem;
+}
+.modal-content{
+overflow: show;
+}
+
+.modal-header{
+border-bottom: none !important;
+}
+
+.modal-footer{
+border-top: none !important;
+}
+
+.custom-position {
+  position: absolute;
+  z-index: 2;
+  top: 7px;
+  right: 0;
+}
+
+.content-header {
+text-transform: none !important;
+margin-top: 0.9rem !important;
+}
+
+// .main-layout main,.menu-collapsed main {
+//     padding: 15px;
+//     background: #fff;
+//     border-radius: .35rem;
+// }
+
+.bg-fafafa {
+  border: none !important;
+  background: #F3F6F9;
+}
+
+li.has-sub > ul > li > .defense {
+  display: none !important;
+}
+
+// select component
+.react-select{
+z-index: 1 !important;
+position: relative;
+}
+
+// User guides
+div#___reactour rect {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.enable-help,.csv{
+height: 2em;
+z-index: 1000;
+position: fixed;
+bottom: 3em;
+right: 2.3em;
+border-radius: 50%;
+cursor: pointer;
+color: #fff;
+background-color: #0a3764;
+padding: 5px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+height: 4px;
+width: 8px;
+}
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 2px grey; 
+border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+background: rgba(0, 128, 0, 0.199); 
+border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: rgba(0, 128, 0, 0.299); 
+}
+
+// file preview
+
+.grid-hover figure {
+  min-height: 200px;
+}
+
+.file-preview{
+  position: absolute;
+  right: 1px;
+  // top: 1px;
+  width: auto;
+  height: 2rem;
+  max-width: 3rem;
+  overflow: hidden;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.badge-oblique {
+  position: absolute;
+  margin-top:20px;
+  transform:skewY(-35deg);
+}
+
+// side bar
+li.has-sub.nav-item.open>ul {
+  position: relative;
+  right: 35px;
+  min-width: 310px;
+}
+
+// editor
+label.custom-file-label::after {
+  display: none !important;
+}
+
+.sixteen-nine-img {
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+
+  img {
+      display: block;
+      margin: -17.875% 0;
+      width: 100%;
+  }
+}
+
+// By DIMON for progress
+.input-range {
+margin-top: 1rem;
+margin-left: auto;
+margin-right: auto;
+}
+
+.input-range__slider {
+width: 100%;
+}
+
+// By DIMON for progress
+
+
+// By DIMON for treeview
+.rct-checkbox,span.rct-icon.rct-icon-leaf,span.rct-icon.rct-icon-parent-open,span.rct-icon.rct-icon-parent-close {
+  display: none;
+}
+span.rct-text {
+  border: 1px solid;
+  margin: 5px;
+}
+
+span.select-wrap.-pageSizeOptions {
+  display: none;
+}
+
+// By DIMON for Switch field
+
+.switch-field {
+display: flex;
+margin-bottom: 36px;
+overflow: hidden;
+justify-content: space-between;
+}
+
+.switch-field input {
+position: absolute !important;
+clip: rect(0, 0, 0, 0);
+height: 1px;
+width: 1px;
+border: 0;
+overflow: hidden;
+}
+
+.switch-field label {
+background-color: #e4e4e4;
+color: rgba(0, 0, 0, 0.6);
+font-size: 14px;
+width: 100%;
+line-height: 1;
+text-align: center;
+padding: 8px 16px;
+margin-right: -1px;
+border: 1px solid rgba(0, 0, 0, 0.2);
+box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+transition: all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+cursor: pointer;
+}
+
+.switch-field input:checked + label {
+background-color: #a5dc86;
+box-shadow: none;
+}
+
+.switch-field label:first-of-type {
+border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+border-radius: 0 4px 4px 0;
+}
+
+// By DIMON for switch toggle box
+/* Switch Style Start */
+
+.toggle_switch{
+position: absolute;
+right: 30px;
+width: 65px;
+height: 65px;
+z-index: 1;
+}
+
+input[type="checkbox"].switch_3{
+-webkit-appearance: none;
+   -moz-appearance: none;
+        appearance: none;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 100%;
+cursor: pointer;
+outline: 0;
+z-index: 1;
+}
+
+svg.checkbox .outer-ring{
+stroke-dasharray: 375;
+stroke-dashoffset: 375;
+-webkit-animation: resetRing .35s ease-in-out forwards;
+        animation: resetRing .35s ease-in-out forwards;
+}
+
+input[type="checkbox"].switch_3:checked + svg.checkbox .outer-ring{
+-webkit-animation: animateRing .35s ease-in-out forwards;
+        animation: animateRing .35s ease-in-out forwards;
+}
+
+input[type="checkbox"].switch_3:checked + svg.checkbox .is_checked{
+opacity: 1;
+-webkit-transform: translateX(0) rotate(0deg);
+        transform: translateX(0) rotate(0deg);
+}
+
+input[type="checkbox"].switch_3:checked + svg.checkbox .is_unchecked{
+opacity: 0;
+-webkit-transform: translateX(-200%) rotate(180deg);
+        transform: translateX(-200%) rotate(180deg);
+}
+
+
+svg.checkbox{
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+svg.checkbox .is_checked{
+opacity: 0;
+fill: yellow;
+-webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+-webkit-transform: translateX(200%) rotate(45deg);
+        transform: translateX(200%) rotate(45deg);
+-webkit-transition: all .35s;
+transition: all .35s;
+}
+
+svg.checkbox .is_unchecked{
+opacity: 1;
+fill: #fafafa;
+-webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+-webkit-transform: translateX(0) rotate(0deg);
+        transform: translateX(0) rotate(0deg);
+-webkit-transition: all .35s;
+transition: all .35s;
+}
+
+@-webkit-keyframes animateRing{
+to{
+  stroke-dashoffset: 0;
+  stroke: #b0aa28;
+}
+}
+
+@keyframes animateRing{
+to{
+  stroke-dashoffset: 0;
+  stroke: #b0aa28;
+}
+}
+
+@-webkit-keyframes resetRing{
+to{
+  stroke-dashoffset: 0;
+  stroke: #fafafa;
+}
+}
+
+@keyframes resetRing{
+to{
+  stroke-dashoffset: 0;
+  stroke: #fafafa;
+}
+}
+
+/* Switch 3 Specific Style End */
+
+.input_wrapper{
+width: 70px;
+height: 30px;
+position: relative;
+cursor: pointer;
+}
+.input_wrapper input[type="checkbox"]{
+width: 70px;
+height: 30px;
+cursor: pointer;
+-webkit-appearance: none;
+   -moz-appearance: none;
+        appearance: none;
+background: gray;
+border-radius: 2px;
+position: relative;
+outline: 0;
+-webkit-transition: all .2s;
+transition: all .2s;
+}
+.input_wrapper input[type="checkbox"]:after{
+position: absolute;
+content: "";
+top: 3px;
+left: 3px;
+width: 24px;
+height: 24px;
+background: #dfeaec;
+z-index: 2;
+border-radius: 2px;
+-webkit-transition: all .35s;
+transition: all .35s;
+}
+.input_wrapper svg{
+position: absolute;
+top: 50%;
+-webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+fill: #fff;
+-webkit-transition: all .35s;
+transition: all .35s;
+z-index: 1;
+}
+
+.input_wrapper .is_checked{
+width: 18px;
+left: 18%;
+-webkit-transform: translateX(190%) translateY(-30%) scale(0);
+        transform: translateX(190%) translateY(-30%) scale(0);
+}
+.input_wrapper .is_unchecked{
+width: 15px;
+right: 10%;
+-webkit-transform: translateX(0) translateY(-30%) scale(1);
+        transform: translateX(0) translateY(-30%) scale(1);
+}
+/* Checked State */
+.input_wrapper input[type="checkbox"]:checked{
+background: #23da87;
+}
+.input_wrapper input[type="checkbox"]:checked:after{
+left: calc(100% - 27px);
+}
+.input_wrapper input[type="checkbox"]:checked + .is_checked{
+-webkit-transform: translateX(0) translateY(-30%) scale(1);
+        transform: translateX(0) translateY(-30%) scale(1);
+}
+.input_wrapper input[type="checkbox"]:checked ~ .is_unchecked{
+-webkit-transform: translateX(-190%) translateY(-30%) scale(0);
+        transform: translateX(-190%) translateY(-30%) scale(0);
+}
+/* Switch Style End */
+
+// By DIMON for User Profil
+.user-icon {
+  padding: 0;
+  bottom: 3px;
+  margin: 0 !important;
+  position: relative;
+}
+.profil-header {
+position: relative;
+}
+
+.profil-header-button {
+position: absolute;
+top: 0;
+right: 0;
+float: right;
+border: none;
+background: none;
+}
+
+.user-profil {
+display: flex;
+color: #cacaca;
+justify-content: center;
+align-items: center;
+font-size: 100px;
+}
+
+.user-avatar {
+  right: 9px;
+  bottom: 8px;
+  position: absolute;
+  text-transform: uppercase;
+  border-radius: 50%;
+  background-color: #fafafa;
+  color: #666;
+  font-size: 7px;
+  font-weight: bold;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Login page by DIMON
+.login-header {
+position: fixed;
+left: 0;
+top: 0;
+margin: 0;
+background-image: url("/bg/login.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+width: 35vw;
+height: 100vh;
+min-width: 250px;
+display: flex;
+align-items: center;
+}
+
+.login-info {
+position: fixed;
+z-index: 2;
+right: 0;
+bottom: 0;
+margin: 0;
+width: 65vw;
+height: 100vh;
+padding: 0 4rem;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 0;
+min-width: 340px;
+overflow-y: scroll;
+}
+
+.login-oval-bar{
+  position: fixed;
+  left: calc(35vw - 20px);
+  border-radius: 100%;
+  height: 100vh;
+  width: 40px;
+  z-index: 1;
+  background: rgb(255, 255, 255);
+}
+
+.login-info-content {
+display: flex;
+align-items: center;
+}
+
+.bottom-text {
+font-size: 0.8rem;
+float: right;
+}
+
+@media (max-width: 768px) {
+.login-header {
+  width: 100vw;
+  height: 40vh;
+}
+.login-info {
+  left: 0;
+  width: 100vw;
+  height: 60vh;
+}
+.login-oval-bar{
+    left: 0;
+    height: 40px;
+    width: 100vw;
+    top: calc(40vh - 20px);
+}
+.all-width {
+  width: 100vw !important;
+}
+}
+
+@media (min-width: 992px) {
+.logo-pc {
+  display: inline;
+}
+img.text {
+    position: relative;
+    right: 150px;
+}
+.logo-img {
+  width: 180px !important;
+  height: 40px !important;
+  display: inline-block;
+  margin-right: 1rem;
+  z-index: 999;
+}
+.navbar {
+  width: 100vw;
+  background: #fff;
+  height: 60px;
+  position: fixed;
+  box-shadow: 0 0 40px 0 #523f6975;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.navbar > div {
+  position: fixed;
+  width: calc(100% - 340px);
+  top: 5px;
+  right: 30px;
+}
+main {
+  margin-top: 105px !important;
+}
+}
+
+@media (max-width: 992px) {
+.logo-img {
+  width: 40px !important;
+  height: 40px !important;
+}
+}
+
+.bg-green {
+  background-color: #497500 !important;
+  border: none !important;
+}
+a {
+color: #1CBCD8 !important;
+}
+.sidebar-header .nav-toggle {
+  top: 18px;
+}
+.app-sidebar .logo, .off-canvas-sidebar .logo {
+  padding: 5px 10px;
+}
+.app-sidebar .navigation li > a:before, .off-canvas-sidebar .navigation li > a:before {
+border-right: solid 5px #40A44E00;
+}
+
+.app-sidebar .navigation li.open > a, .off-canvas-sidebar .navigation li.open > a, .bg-green-light {
+  background: #40A44E00;
+}
+
+.scrollbar-container {
+  background: #1E1E2D !important;
+}
+
+li.nav-item a, li.nav-item i {
+  color: #fafafa !important;
+}
+
+.css-2b097c-container {
+z-index: 99;
+}
+
+.btn[class*="btn-sm"] {
+  margin-bottom: 0;
+  height: 1.4rem;
+  padding-top: 0;
+}
+
+.cursor {
+cursor: pointer;
+}
+
+.cursor-not-allowed {
+cursor: wait !important;
+}
+
+.image,.single-teachers{
+height: auto !important;
+}
+
+.grid-hover{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ReactTable {
+  border-right: 0 !important;
+  border-left: 0 !important;
+}
+
+.ReactTable .-pagination {
+  border-top: none !important;
+  width: 100% !important;
+  justify-content: flex-end !important;
+}
+
+.ReactTable .-pagination .-previous, .ReactTable .-pagination .-next, .ReactTable .-pagination .-center {
+  flex: none !important;
+}
+
+.-pageJump>input {
+  background: none !important;
+  border: none !important;
+}
+
+.-btn {
+  background: none !important;
+}
+
+.rt-th.rt-resizable-header {
+  text-align: center;
+}

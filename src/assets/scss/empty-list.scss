@@ -1,0 +1,164 @@
+.empty-img {
+  position: absolute;
+  right: calc(50% - 10em);
+  bottom: calc(50% - 10em);
+  width: 20em;
+}
+
+.empty-list {
+  text-align: center;
+}
+svg.empty {
+  max-width: 60%;
+  padding: 3rem;
+}
+@media (max-width: 640px) {
+  svg.empty {
+    max-width: 90%;
+  }
+}
+svg.empty .oval,
+svg.empty .plus,
+svg.empty #diamond,
+svg.empty #bubble-rounded {
+  -webkit-animation: plopp 4s ease-out infinite;
+          animation: plopp 4s ease-out infinite;
+}
+svg.empty .oval:nth-child(1),
+svg.empty .plus:nth-child(1),
+svg.empty #diamond:nth-child(1),
+svg.empty #bubble-rounded:nth-child(1) {
+  -webkit-animation-delay: -240ms;
+          animation-delay: -240ms;
+}
+svg.empty .oval:nth-child(2),
+svg.empty .plus:nth-child(2),
+svg.empty #diamond:nth-child(2),
+svg.empty #bubble-rounded:nth-child(2) {
+  -webkit-animation-delay: -480ms;
+          animation-delay: -480ms;
+}
+svg.empty .oval:nth-child(3),
+svg.empty .plus:nth-child(3),
+svg.empty #diamond:nth-child(3),
+svg.empty #bubble-rounded:nth-child(3) {
+  -webkit-animation-delay: -720ms;
+          animation-delay: -720ms;
+}
+svg.empty .oval:nth-child(4),
+svg.empty .plus:nth-child(4),
+svg.empty #diamond:nth-child(4),
+svg.empty #bubble-rounded:nth-child(4) {
+  -webkit-animation-delay: -960ms;
+          animation-delay: -960ms;
+}
+svg.empty .oval:nth-child(5),
+svg.empty .plus:nth-child(5),
+svg.empty #diamond:nth-child(5),
+svg.empty #bubble-rounded:nth-child(5) {
+  -webkit-animation-delay: -1200ms;
+          animation-delay: -1200ms;
+}
+svg.empty .oval:nth-child(6),
+svg.empty .plus:nth-child(6),
+svg.empty #diamond:nth-child(6),
+svg.empty #bubble-rounded:nth-child(6) {
+  -webkit-animation-delay: -1440ms;
+          animation-delay: -1440ms;
+}
+svg.empty .oval:nth-child(7),
+svg.empty .plus:nth-child(7),
+svg.empty #diamond:nth-child(7),
+svg.empty #bubble-rounded:nth-child(7) {
+  -webkit-animation-delay: -1680ms;
+          animation-delay: -1680ms;
+}
+svg.empty .oval:nth-child(8),
+svg.empty .plus:nth-child(8),
+svg.empty #diamond:nth-child(8),
+svg.empty #bubble-rounded:nth-child(8) {
+  -webkit-animation-delay: -1920ms;
+          animation-delay: -1920ms;
+}
+svg.empty .oval:nth-child(9),
+svg.empty .plus:nth-child(9),
+svg.empty #diamond:nth-child(9),
+svg.empty #bubble-rounded:nth-child(9) {
+  -webkit-animation-delay: -2160ms;
+          animation-delay: -2160ms;
+}
+svg.empty .oval:nth-child(10),
+svg.empty .plus:nth-child(10),
+svg.empty #diamond:nth-child(10),
+svg.empty #bubble-rounded:nth-child(10) {
+  -webkit-animation-delay: -2400ms;
+          animation-delay: -2400ms;
+}
+svg.empty .oval:nth-child(11),
+svg.empty .plus:nth-child(11),
+svg.empty #diamond:nth-child(11),
+svg.empty #bubble-rounded:nth-child(11) {
+  -webkit-animation-delay: -2640ms;
+          animation-delay: -2640ms;
+}
+svg.empty .oval:nth-child(12),
+svg.empty .plus:nth-child(12),
+svg.empty #diamond:nth-child(12),
+svg.empty #bubble-rounded:nth-child(12) {
+  -webkit-animation-delay: -2880ms;
+          animation-delay: -2880ms;
+}
+svg.empty .oval:nth-child(13),
+svg.empty .plus:nth-child(13),
+svg.empty #diamond:nth-child(13),
+svg.empty #bubble-rounded:nth-child(13) {
+  -webkit-animation-delay: -3120ms;
+          animation-delay: -3120ms;
+}
+svg.empty .oval:nth-child(14),
+svg.empty .plus:nth-child(14),
+svg.empty #diamond:nth-child(14),
+svg.empty #bubble-rounded:nth-child(14) {
+  -webkit-animation-delay: -3360ms;
+          animation-delay: -3360ms;
+}
+svg.empty .oval:nth-child(15),
+svg.empty .plus:nth-child(15),
+svg.empty #diamond:nth-child(15),
+svg.empty #bubble-rounded:nth-child(15) {
+  -webkit-animation-delay: -3600ms;
+          animation-delay: -3600ms;
+}
+svg.empty .oval:nth-child(16),
+svg.empty .plus:nth-child(16),
+svg.empty #diamond:nth-child(16),
+svg.empty #bubble-rounded:nth-child(16) {
+  -webkit-animation-delay: -3840ms;
+          animation-delay: -3840ms;
+}
+svg.empty #bg-line:nth-child(2) {
+  fill-opacity: 0.3;
+}
+svg.empty #bg-line:nth-child(3) {
+  fill-opacity: 0.4;
+}
+@-webkit-keyframes plopp {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, -10px);
+    opacity: 0;
+  }
+}
+@keyframes plopp {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, -10px);
+    opacity: 0;
+  }
+}

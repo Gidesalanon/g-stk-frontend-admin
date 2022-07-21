@@ -1,0 +1,169 @@
+[33mcommit 8d18f59404e89874bdb1f570f424d8a679a89be2[m[33m ([m[1;36mHEAD[m[33m, [m[1;32mtmp[m[33m)[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Mon Feb 8 04:31:39 2021 +0100
+
+    update home states and fixing bugs
+
+[33mcommit c8543776162bf4ce2b4387e99ae6ac3ff2f98b52[m[33m ([m[1;32mdev_dimon_editor[m[33m)[m
+Merge: f2c4edd 70f4378
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Sun Feb 7 22:37:40 2021 +0100
+
+    merge dev_dimon to editor
+
+[33mcommit f2c4eddc29549ae7829503b2378b15f298870414[m[33m ([m[1;31morigin/dev_dimon_editor[m[33m)[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Sun Feb 7 22:09:26 2021 +0100
+
+    fix users crud bugs
+
+[33mcommit 9cf254e2e030deae92bd9ae0cbd455425faa2d66[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Sun Feb 7 20:06:27 2021 +0100
+
+    change text editor add weblinks crud aund fix some bugs
+
+[33mcommit 1b6bfdf93e4b5e5dae5765eae70358af89cbfcfa[m
+Author: Judi Le Boss <judicaeltandjiekpon@gmail.com>
+Date:   Fri Feb 5 19:55:44 2021 +0100
+
+    Updated pages
+
+[33mcommit 7d6e3f5d03caf5b89f9586f92d58608ff4c8e6c7[m
+Author: Judi Le Boss <judicaeltandjiekpon@gmail.com>
+Date:   Fri Feb 5 15:37:01 2021 +0100
+
+    editor add
+
+[33mcommit 3c1bb876555c7c96b7e7fc8006e88158b215abd7[m
+Author: Judi Le Boss <judicaeltandjiekpon@gmail.com>
+Date:   Fri Feb 5 00:31:26 2021 +0100
+
+    Editor update
+
+[33mcommit 70f4378c8e496e95b01e3449dbbf0d1e357e7c6c[m[33m ([m[1;31morigin/dev_dimon[m[33m, [m[1;32mdev_dimon[m[33m)[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Thu Feb 4 22:22:27 2021 +0100
+
+    fix some crud bugs and start with medias
+
+[33mcommit 0580918c4e5c859ba23f83f815bcef80fa79d269[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Sat Jan 30 08:16:55 2021 +0100
+
+    try to add base 64 conversion as url on uploal
+
+[33mcommit f4fff724833b9baae1d2343409cc8fdb9e82733a[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Author: Judicael <judicaeltandjiekpon@yahoo.fr>
+Date:   Fri Jan 29 21:08:11 2021 +0100
+
+    Preview Documentation Add To reducer
+
+[33mcommit cf719b2a24c4780c7d589c014bf5a42d64126a47[m
+Author: Judicael <judicaeltandjiekpon@yahoo.fr>
+Date:   Fri Jan 29 20:41:06 2021 +0100
+
+    Fixed Page remove, add
+
+[33mcommit 774e34e55ff13bc3f1af98ba16acb558ad450a9b[m
+Merge: 9553811 e35aab3
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Thu Jan 28 07:37:26 2021 +0100
+
+    update sidemenu
+
+[33mcommit 95538117f7edc4c6d3252fd82bcdb31392375a44[m[33m ([m[1;32mupload-file-form[m[33m)[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Thu Jan 28 07:17:19 2021 +0100
+
+    fix some upload files bugs
+
+[33mcommit c12b755cf572c579ebd31645cf46e5e7b56967d1[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Mon Jan 25 16:08:45 2021 +0100
+
+    arrange sidemenu and add contacts crud
+
+[33mcommit 6eb8459d88fbdc88c04ea87907a408bbd0871f56[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Mon Jan 25 16:03:59 2021 +0100
+
+    fix some crud bugs
+
+[33mcommit e35aab3031cc4761889799190b85eeff1896e3e5[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Mon Jan 25 16:08:45 2021 +0100
+
+    arrange sidemenu and add contacts crud
+
+[33mcommit c15e8a8b23dd6bd2184a7e582f378b6e4fd3a087[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Mon Jan 25 16:03:59 2021 +0100
+
+    arrange sidemenu, add contacts crud
+
+[33mcommit 1520150c78de32275b0f87708754d795b4428257[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Sat Jan 23 17:19:24 2021 +0100
+
+    fix login bugs
+
+[33mcommit 1fe2c70396ace76a3b4cce3474d022fd2db8a856[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Sat Jan 23 13:39:37 2021 +0100
+
+    start partner and application crud and edit profil
+
+[33mcommit f9c80653730bed26b49cdc2949afb1f12597b817[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Thu Jan 21 23:28:58 2021 +0100
+
+    start documentation crud and perform quill editor
+
+[33mcommit c4a9f67f33e43008f2a260fd6b71a7d6a694bad1[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Wed Jan 20 13:10:41 2021 +0100
+
+     start with news crud
+
+[33mcommit bb5ce86888bb61577fccbe6463d3ed0708ee9ea5[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Mon Jan 18 18:46:54 2021 +0100
+
+    add and perform react treeview
+
+[33mcommit b6e8b37dee29a4867d0d119a6f69ffe572a167f8[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Sun Jan 17 14:44:11 2021 +0100
+
+    for page, menu, profile, module version 1
+
+[33mcommit a25cb66c73eda160f7d08fb105e615959da8375b[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Wed Jan 13 21:13:55 2021 +0100
+
+    fix some bugs and add user profil
+
+[33mcommit 541f12d7f03e70a46bd64b640447738d5caf2b4f[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Tue Jan 12 12:42:23 2021 +0100
+
+    CRUD Module entity
+
+[33mcommit 462fedb06782f0b8ddd9e6ce812b83325893dc0f[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Tue Jan 12 07:37:02 2021 +0100
+
+    add new template, change login style and crud module
+
+[33mcommit 0892390632ea98c4359b1c1a60db2281bd74668e[m
+Author: Judicaël DIMON <judicaelbdimon@gmail.com>
+Date:   Tue Jan 5 13:48:05 2021 +0100
+
+    Add default template
+
+[33mcommit 999f0812cc60d1b827d72c2177a1983094511d29[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Judi Le Boss <judicaeltandjiekpon@gmail.com>
+Date:   Thu Dec 24 18:30:32 2020 +0000
+
+    Initial commit

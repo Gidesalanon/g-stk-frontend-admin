@@ -1,0 +1,7 @@
+.custom-file-label{
+    z-index: 0;
+
+    &::after {
+        z-index: 0;
+    }
+}

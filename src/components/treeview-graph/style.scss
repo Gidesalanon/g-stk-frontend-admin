@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+body * {
+  box-sizing: border-box;
+}
+
+$light-colors: (
+	noapp: #999999,
+	hr: #ff8360,
+	revenue: #cd4e9d,
+	calendar: #5c8eca,
+	doc: #2085AA,
+	mc: #2085aa,
+	crm: #dd8447,
+	settings: #cc474f,
+	bills: #3ca09d,
+	accounting: #e2bb62,
+	customers: #dd8447,
+	reporting: #B280EA,
+  good: #3dbd90,
+  neutral: #bc8d3f,
+	bad: #cc474f
+);
+
+$dark-colors: (
+	noapp: #666666,
+	hr: #d16c59,
+	revenue: #b04387,
+	calendar: #3a597e,
+	doc: #115D78,
+	mc: #115d78,
+	crm: #c46627,
+	settings: #a83b42,
+	bills: #2c8484,
+	accounting: #ddb047,
+	customers: #c46627,
+	reporting: #936BC1,
+  good: #2b8666,
+  neutral: #ac7513,
+  bad: #a83b42
+);
+
+$grid: 20px;
+$colorGray: #ccc;
+$transitionTime: 0.3s;
+
+// TODO remove test
+.test {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  border: 1px solid $colorGray;
+  transition: border-color 0.3s;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+@mixin pseudoStyles($width, $height) {
+  content: '';
+  display: block;
+  width: $width;
+  height: $height;
+  background-color: $colorGray;
+  position: absolute;
+  z-index: 20;
+  transition: background-color $transitionTime;
+}
+
+.hr-teams {
+  display: flex;
+  flex-direction: column;
+  min-width: 1000px;
+
+  .item {
+    display: flex;
+
+    &__parent {
+      position: relative;
+      min-width: 150px;
+
+      &__line {
+        position: absolute;
+        width: 1px;
+        background-color: $colorGray;
+        right: calc(100% + #{$grid});
+        z-index: 10;
+        transition: background-color $transitionTime;
+      }
+
+      &__element {
+        min-width: 200px;
+        width: 100%;
+        margin-bottom: $grid / 2;
+        display: flex;
+        align-items: center;
+
+        &.has-children:after {
+          @include pseudoStyles($grid, 1px);
+          left: 100%;
+        }
+
+        &.has-parent:before {
+          @include pseudoStyles($grid, 1px);
+          right: 100%;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      &.active {
+        .item__parent__element {
+          &.has-children.no-active-children:after {
+            background-color: $colorGray;
+          }
+        }
+      }
+    }
+
+    &__children {
+      margin-left: $grid * 2;
+      position: relative;
+      flex: 1;
+    }
+  }
+}
+
+@each $module,
+$color in $light-colors {
+  body.currentapp_#{$module} {
+    .hr-teams {
+      .item {
+        &__parent {
+          &__line {
+            &.active {
+              background-color: $color;
+            }
+          }
+
+          &.active {
+            .item__parent__element {
+              border-color: $color;
+
+              &.has-parent:before,
+              &.has-children:after {
+                background-color: $color;
+              }
+            }
+
+            .test {
+              border-color: $color;
+            }
+          }
+        }
+
+        &__children.dragged-over {
+          background-color: rgba($color, .1);
+        }
+      }
+    }
+  }
+}
+
+@each $module,
+$color in $dark-colors {
+  body.currentapp_#{$module} {
+    .hr-teams {
+      .item {
+        &__parent {
+          &__line {
+            &.active {
+              background-color: $color;
+            }
+          }
+
+          &.active {
+            .item__parent__element {
+              border-color: $color;
+
+              &.has-parent:before,
+              &.has-children:after {
+                background-color: $color;
+              }
+            }
+
+            .test {
+              border-color: $color;
+            }
+          }
+        }
+
+        &__children.dragged-over {
+          background-color: rgba($color, .1);
+        }
+      }
+    }
+  }
+}

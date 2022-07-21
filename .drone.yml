@@ -1,0 +1,43 @@
+kind: pipeline
+name: default
+
+volumes:
+- name: node-cache
+  host:
+    path: /var/lib/drone/sie-dashboard/node_modules
+
+steps:
+- name: Build
+  image: node
+  volumes:
+  - name: node-cache
+    path: /drone/src/node_modules
+  commands:
+  - npm install
+
+- name: Deploy to dev
+  image: ruby
+  environment:
+    DOKKU_HOST: "54.234.220.216"
+    DOKKU_PROJECT_NAME: sie_dashboard
+    SSH_PRIVATE_KEY:
+      from_secret: DEV_SSH_PRIVATE_KEY
+  commands:
+  - bash ./scripts/drone-deploy.sh
+  when:
+    branch:
+    - develop
+
+- name: Deploy to prod
+  image: ruby
+  environment:
+    DOKKU_HOST: "137.255.9.183"
+    DOKKU_PORT: "27089"
+    DOKKU_PROJECT_NAME: sie_dashboard
+    SSH_PRIVATE_KEY:
+      from_secret: PROD_SSH_PRIVATE_KEY
+  commands:
+  - bash ./scripts/drone-deploy.sh
+  when:
+    branch:
+    - master

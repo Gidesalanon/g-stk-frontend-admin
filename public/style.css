@@ -1,0 +1,131 @@
+
+.teachers-cont {
+}
+
+.teachers-cont p {
+    padding-top: 30px;
+}
+
+.single-teachers {
+    position: relative;
+    height: 200px;
+}
+
+.single-teachers .image {
+    /* border-radius: 5px; */
+    overflow: hidden;
+    height: 200px;
+}
+
+.single-teachers .count{
+    position: absolute;
+    right: 0px;
+    height: 50px;
+    width: 100px;
+    padding: 10px;
+    font-size: 9px;
+    font-weight: normal;
+    border-radius: 2px;
+    background-color: #fdc600;
+}
+
+.single-teachers .image img {
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+    width: 100%;
+}
+
+.single-teachers:hover .image img {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.single-teachers .cont {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    /* width: 80%; */
+    background-color:rgb(87 101 112);
+    /* border-radius: 5px; */
+    margin: 0 auto;
+    padding: 5px;
+    color: #FFF;
+}
+
+.single-teachers .cont a {
+    display: block;
+}
+
+.single-teachers .cont a h6 {
+    color: #000;
+    font-size: 15px;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+
+.single-teachers .cont a:hover h6 {
+    color: #ffc600;
+}
+
+.single-teachers .cont span {
+    font-size: 14px;
+    color: #8a8a8a;
+}
+
+
+.courses-pagination {
+}
+
+.courses-pagination .pagination {
+}
+
+.courses-pagination .pagination .page-item {
+    margin: 0 5px;
+}
+
+.courses-pagination .pagination .page-item a {
+    font-size: 15px;
+    color: #586470;
+    width: 40px;
+    height: 40px;
+    line-height: 36px;
+    border: 2px solid #aaa;
+    border-radius: 5px;
+    text-align: center;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+
+.courses-pagination .pagination .page-item a.active, .courses-pagination .pagination .page-item a:hover {
+    background-color: #ffc600;
+    border-color: #ffc600;
+}
+
+
+
+.section-title {
+}
+
+.section-title h5 {
+    color: #586470;
+    position: relative;
+    padding-bottom: 12px;
+    font-size: 35px;
+}
+
+.section-title h5::before {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 2px;
+    background-color: #ffc600;
+    bottom: 0;
+    left: 0;
+}
+
+.section-title h2 {
+    font-size: 48px;
+    color: #000;
+    padding-top: 10px;
+}
