@@ -37,15 +37,11 @@ const LazyLoginPage = lazy(() => import("../pages/LoginPage"));
 const LazyRecoveryPage = lazy(() => import("../pages/RecoveryPage"));
 const LazyNewPasswordPage = lazy(() => import("../pages/NewPasswordPage"));
 
-const LazyPageList = lazy( () =>import("../pages/Page"));
 const LazyLogout = lazy( () =>import("./Logout"));
 const LazyProfil = lazy( () =>import("../pages/utilisateurs/Profil"));
 const LazySetting = lazy( () =>import("../pages/utilisateurs/Setting"));
 const LazyUtilisateur = lazy( () =>import("../pages/User"));
-const LazyMenu = lazy( () =>import("../pages/MenuPage"));
 const LazyCategorieProduit = lazy( () =>import("../pages/CategorieProduitPage"));
-const LazyContact = lazy( () =>import("../pages/ContactPage"));
-const LazyActualite = lazy( () =>import("../pages/ActualitePage"));
 const LazyApplication = lazy( () =>import("../pages/ApplicationPage"));
 const LazyMedia = lazy( () =>import("../pages/MediaPage"));
 const LazyMediatheque = lazy( () =>import("../pages/Mediatheque"));
@@ -82,30 +78,10 @@ class Router extends Component {
 
                <MainLayoutRoutes
                   exact
-                  path="/news"
-                  render={matchprops => (
-                     <Suspense fallback={<Spinner />}>
-                        <LazyActualite {...matchprops} />
-                     </Suspense>
-                  )}
-               />
-
-               <MainLayoutRoutes
-                  exact
                   path="categories/products"
                   render={matchprops => (
                      <Suspense fallback={<Spinner />}>
                         <LazyCategorieProduit {...matchprops} />
-                     </Suspense>
-                  )}
-               />
-
-               <MainLayoutRoutes
-                  exact
-                  path="/pages"
-                  render={matchprops => (
-                     <Suspense fallback={<Spinner />}>
-                           <LazyPageList {...matchprops} />
                      </Suspense>
                   )}
                />
