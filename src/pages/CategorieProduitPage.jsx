@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import 'react-table/react-table.css';
-import { PlusCircle } from 'react-feather';
-import { Button } from 'reactstrap';
+import { PlusCircle, Home } from 'react-feather';
 import { connect } from 'react-redux'
 import ContentHeader from '../components/contentHead/contentHeader';
-import { Modal, ModalHeader } from 'reactstrap';
+import { Button, Row, Modal, ModalHeader } from 'reactstrap';
 import CategorieProduitListComponent from '../components/categorie_produits/list';
 import CategorieProduitFormComponent from '../components/categorie_produits/form';
 import CategorieProduitPreviewComponent from '../components/categorie_produits/preview';
+import { Link } from 'react-router-dom';
 import { toastr } from 'react-redux-toastr';
 
 class CategorieProduitPage extends Component {
@@ -27,7 +27,7 @@ class CategorieProduitPage extends Component {
 
   onCategorieProduitAdded(success) {
     if (success) {
-      toastr.success('Informations !','Produits ajouté avec succès',{ position: 'top-center'});
+      toastr.success('Informations !','Catégorie ajoutée avec succès',{ position: 'top-center'});
       this.setState({ openAddModal: false });
     } else {
       toastr.warning('Informations !','Erreur lors de la soumission des données', { position: 'top-center'});
@@ -36,7 +36,7 @@ class CategorieProduitPage extends Component {
 
   onCategorieProduitEdited(success) {
     if (success) {
-      toastr.success('Informations !','Produits modifié avec succès',{ position: 'top-center'});
+      toastr.success('Informations !','Catégorie modifiée avec succès',{ position: 'top-center'});
       this.setState({ openEditModal: false });
     } else {
       toastr.warning('Informations !','Erreur lors de la soumission des données',{ position: 'top-center'});
@@ -45,7 +45,7 @@ class CategorieProduitPage extends Component {
 
   onCategorieProduitRemoved(success) {
     if(success) {
-      toastr.success('Informations !','Produits supprimé avec succès',{ position: 'top-center'})
+      toastr.success('Informations !','Catégorie supprimée avec succès',{ position: 'top-center'})
     } else {
       toastr.warning('Informations !','Erreur lors de la suppression des données',{ position: 'top-center'})
     }
@@ -58,27 +58,40 @@ class CategorieProduitPage extends Component {
   render() {
     return (
       <>
-        <ContentHeader>Liste des produits</ContentHeader>
-        <div className="text-right">
-          <Button style={{ padding:'10px' }} color="primary" type="button" onClick={()=>{ this.setState({ openAddModal: true }) }}>
-            <PlusCircle size={16} color="#FFF" /> Ajouter un produit
-          </Button>
-        </div>
+        
+        <Row>
+          <div className="breacumbs">
+            <Link to="/">
+              <Home size={16} />
+            </Link> &nbsp; / &nbsp; 
+            <Link to="/products">Liste</Link> &nbsp; / &nbsp; 
+            <Link to="/products/categories">Catégories</Link>
+          </div>
+        </Row>
+
+        <Row>
+          <ContentHeader className="col-md-6">Categories de produits </ContentHeader>
+          <div className="text-right col-md-6">
+            <Button style={{ padding:'10px' }} color="info" type="button" onClick={()=>{ this.setState({ openAddModal: true }) }}>
+              <PlusCircle size={16} color="#FFF" /> Nouvelle catégorie
+            </Button>
+          </div>
+        </Row>
 
         <CategorieProduitListComponent successRemove={this.onCategorieProduitRemoved}/>
 
         <Modal isOpen={ this.props.preview ? true : false } toggle={() => this.props.setPreviewCategorieProduit(null)} size='lg'>
-            <ModalHeader toggle={()=> this.props.setPreviewCategorieProduit(null) }>Prévisualisation du produit "{ this.props.preview ? this.props.preview.title : '' }"</ModalHeader>
+            <ModalHeader toggle={()=> this.props.setPreviewCategorieProduit(null) }>Détails de la catégorie "{ this.props.preview ? this.props.preview.name : '' }"</ModalHeader>
             <CategorieProduitPreviewComponent closePreviewModal={()=> this.props.setPreviewCategorieProduit(null) } />
         </Modal>
 
         <Modal isOpen={this.state.openAddModal}>
-            <ModalHeader toggle={()=> this.setState({ openAddModal: false }) }>Ajout d'un produit</ModalHeader>
+            <ModalHeader toggle={()=> this.setState({ openAddModal: false }) }>Ajout d'une catégorie produit</ModalHeader>
             <CategorieProduitFormComponent onRequestSent={this.onCategorieProduitAdded}  />
         </Modal>
 
         <Modal isOpen={ this.props.current ? true : false }>
-            <ModalHeader toggle={()=> this.closeEditModal() }>Modification du produit "{ this.props.current ? this.props.current.title : '' }"</ModalHeader>
+            <ModalHeader toggle={()=> this.closeEditModal() }>Modification de la catégorie "{ this.props.current ? this.props.current.name : '' }"</ModalHeader>
             <CategorieProduitFormComponent onRequestSent={this.onCategorieProduitEdited} />
         </Modal>
       </>

@@ -14,17 +14,16 @@ import {
 } from 'reactstrap';
 import Toggle from "react-toggle";
 import classnames from 'classnames';
-import SelectComponent from "../select";
 import { postEntity, putEntity } from '../../service/api';
 
-class CategorieProduitFormComponent extends Component {
+class EntrepriseFormComponent extends Component {
     form = new FormData();
     state = {
         model: {
             name: null,
             fichier: null,
             public: 1,
-            description: ''
+            presentation: ''
         },
         progress: 0,
         loading: false,
@@ -47,13 +46,13 @@ class CategorieProduitFormComponent extends Component {
                 name: props.current.name,
                 public: props.current.public,
                 fichier: props.current.fichier || null,
-                description: props.current.description || '',
+                presentation: props.current.presentation || '',
             }
             let model = {
                 name: props.current.name,
                 public: props.current.public,
                 fichier: props.current.fichier || null,
-                description: props.current.description || '',
+                presentation: props.current.presentation || '',
 
             };
 
@@ -98,11 +97,11 @@ class CategorieProduitFormComponent extends Component {
 
         this.setState({ loading: true });
         if (this.props.current?.id) {
-            request = putEntity('categorie_produits', this.props.current.id, formBody,  {
+            request = putEntity('entreprises', this.props.current.id, formBody,  {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
             })
         } else {
-            request = postEntity('categorie_produits', form, config)
+            request = postEntity('entreprises', form, config)
         }
 
         request.then(() => {
@@ -122,7 +121,7 @@ class CategorieProduitFormComponent extends Component {
     }
 
     setDescription(event) {
-        this.setState({ model: { ...this.state.model, description: event.target.value }});
+        this.setState({ model: { ...this.state.model, presentation: event.target.value }});
     }
 
     setFichier(event) {
@@ -171,7 +170,7 @@ class CategorieProduitFormComponent extends Component {
                                                 defaultValue={this.defaults.name}
                                                 className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('name')})}/>
                                             <div className="invalid-feedback">
-                                                Veuillez saisir un titre pour la categorie_produit.
+                                                Veuillez saisir un titre pour la entreprise.
                                             </div>
                                         </div>
                                     </FormGroup>
@@ -196,11 +195,11 @@ class CategorieProduitFormComponent extends Component {
                                                         
                                 <Col md="12">
                                     <FormGroup>
-                                        <Label for="iconLeft" >Description</Label>
+                                        <Label for="iconLeft" >Présentation</Label>
                                         <div className="position-relative">
-                                            <textarea type="text" onChange={this.setDescription} name="description" defaultValue={this.defaults.description}
+                                            <textarea type="text" onChange={this.setDescription} name="presentation" defaultValue={this.defaults.presentation}
                                                 className={classnames('form-control')}
-                                                value={this.state.model.description}
+                                                value={this.state.model.presentation}
                                             ></textarea>
                                         </div>
                                     </FormGroup>
@@ -234,7 +233,7 @@ class CategorieProduitFormComponent extends Component {
 }
 
 const mapStateProps = (state) => ({
-    current: state.categorie_produit.current,
+    current: state.entreprise.current,
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -242,4 +241,4 @@ const mapDispatchToProps = (dispatch) => {
         reloadDataAfterEvent: (event) => dispatch({ type: 'reload-data', event }),
     }
 }
-export default connect(mapStateProps, mapDispatchToProps)(CategorieProduitFormComponent)
+export default connect(mapStateProps, mapDispatchToProps)(EntrepriseFormComponent)

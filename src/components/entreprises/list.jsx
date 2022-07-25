@@ -9,9 +9,9 @@ import Toggle from "react-toggle";
 import "react-toggle/style.css";
 
 const Table = ReactTable;
-const ENDPOINT = 'categorie_produits'
+const ENDPOINT = 'entreprises'
 
-class CategorieProduitListComponent extends Component {
+class EntrepriseListComponent extends Component {
     state = {
     
         openPreviewModal: false,
@@ -31,7 +31,7 @@ class CategorieProduitListComponent extends Component {
                 Header: 'Nom'
             },
             {
-                accessor: 'description',
+                accessor: 'presentation',
                 filterable:false,
                 Header: 'Description'
             },
@@ -45,7 +45,7 @@ class CategorieProduitListComponent extends Component {
                 accessor: 'public',
                 Header: 'Publié',
                 width:100,
-                Cell: ({ row: { _original } }) => <Toggle checked={_original.public==1}  onChange={() => this.categorie_produitUpdatePublic(_original)} />,
+                Cell: ({ row: { _original } }) => <Toggle checked={_original.public==1}  onChange={() => this.entrepriseUpdatePublic(_original)} />,
                 
                 filterMethod: (filter, row) => {
                 if (filter.value === "") {
@@ -76,7 +76,7 @@ class CategorieProduitListComponent extends Component {
             
     };
 
-    removeCategorieProduit = row => {
+    removeEntreprise = row => {
         removeEntity(ENDPOINT, row.id).then(res => {
             this.props.reloadDataAfterEvent('deleted')
             this.props.successRemove(true)
@@ -87,13 +87,13 @@ class CategorieProduitListComponent extends Component {
 
     renderActions = (row) => (
         <>
-            <Button size="sm" outline title="Prévisualiser" color="success" onClick={()=>{ this.props.setPreviewCategorieProduit(row); this.setState({ openPreviewModal: true }) }}><i className="fa fa-eye"></i></Button> {"   "}
-            <Button size="sm" outline title="Modifier" color="info" onClick={() => this.props.setCurrentCategorieProduit(row)}><i className="fa fa-edit"></i></Button> {"   "}
+            <Button size="sm" outline title="Prévisualiser" color="success" onClick={()=>{ this.props.setPreviewEntreprise(row); this.setState({ openPreviewModal: true }) }}><i className="fa fa-eye"></i></Button> {"   "}
+            <Button size="sm" outline title="Modifier" color="info" onClick={() => this.props.setCurrentEntreprise(row)}><i className="fa fa-edit"></i></Button> {"   "}
             <Button size="sm" outline title="Supprimer" color="danger" onClick={() => this.setState({ ConfirmModal: row })}><i className="fa fa-trash"></i></Button>
         </>
     );
 
-    categorie_produitUpdatePublic = (row) => {
+    entrepriseUpdatePublic = (row) => {
         row.public=row.public==0?1:0;
         let id = row.id;
         delete row['id'];
@@ -193,7 +193,7 @@ class CategorieProduitListComponent extends Component {
                     <ModalBody>Faut-il vraiment supprimer cet élément ?</ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={()=> this.setState({ ConfirmModal: null }) }>Annuler</Button>
-                        <Button color="danger" onClick={() => {this.removeCategorieProduit(this.state.ConfirmModal);this.setState({ ConfirmModal: null });}}>Supprimer</Button>
+                        <Button color="danger" onClick={() => {this.removeEntreprise(this.state.ConfirmModal);this.setState({ ConfirmModal: null });}}>Supprimer</Button>
                     </ModalFooter>
                 </Modal>
                 <Table
@@ -219,22 +219,22 @@ class CategorieProduitListComponent extends Component {
 
 const mapStateProps = (state) => {
     return {
-        current: state.categorie_produit.current,
-        reload_data: state.categorie_produit.reload_data,
+        current: state.entreprise.current,
+        reload_data: state.entreprise.reload_data,
     }
 }
 
 const mapDispatchToProps = dispatch => {
 
     return {
-        setCurrentCategorieProduit: (current) => {
-            dispatch({ type: 'current-categorie_produit', current })
+        setCurrentEntreprise: (current) => {
+            dispatch({ type: 'current-entreprise', current })
         },
-        setPreviewCategorieProduit: (preview) => {
-            dispatch({ type: 'preview-categorie_produit', preview })
+        setPreviewEntreprise: (preview) => {
+            dispatch({ type: 'preview-entreprise', preview })
         },
         reloadDataAfterEvent: (event) => dispatch({ type: 'reload-data', event }),
     }
 }
 
-export default connect(mapStateProps, mapDispatchToProps)(CategorieProduitListComponent)
+export default connect(mapStateProps, mapDispatchToProps)(EntrepriseListComponent)

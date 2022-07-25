@@ -12,16 +12,15 @@ import {
     Row,
     CustomInput
 } from 'reactstrap';
-import classnames from 'classnames';
 
 require('dotenv').config()
-class CategorieProduitPreviewComponent extends Component {
+class EntreprisePreviewComponent extends Component {
     form = new FormData();
     state = {
         model: {
             name: null,
             fichier: null,
-            description: null
+            presentation: null
         },
         loading: false,
         formSubmitted: false
@@ -36,12 +35,12 @@ class CategorieProduitPreviewComponent extends Component {
             this.defaults = {
                 name: props.preview.name,
                 fichier: props.preview.fichier || null,
-                description: props.preview.description || '',
+                presentation: props.preview.presentation || '',
             }
             let model = {
                 name: props.preview.name,
                 fichier: props.preview.fichier || null,
-                description: props.preview.description || '',
+                presentation: props.preview.presentation || '',
             };
 
             this.state = {
@@ -79,10 +78,10 @@ class CategorieProduitPreviewComponent extends Component {
                             <Row>
                                 <Col md={12}>
                                     <FormGroup>
-                                        <Label for="iconLeft" >Description</Label>
+                                        <Label for="iconLeft" >Présentation</Label>
                                         <div className="position-relative ">
-                                            <textarea type="text" name="description"
-                                                defaultValue={this.state.model.description}
+                                            <textarea type="text" name="presentation"
+                                                defaultValue={this.state.model.presentation}
                                                 disabled={true}
                                                 className="form-control"/>
                                         </div>
@@ -105,7 +104,7 @@ class CategorieProduitPreviewComponent extends Component {
 
 
 const mapStateProps = (state) => ({
-    preview: state.categorie_produit.preview,
+    preview: state.entreprise.preview,
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -113,4 +112,4 @@ const mapDispatchToProps = (dispatch) => {
         reloadDataAfterEvent: (event) => dispatch({ type: 'reload-data', event }),
     }
 }
-export default connect(mapStateProps, mapDispatchToProps)(CategorieProduitPreviewComponent)
+export default connect(mapStateProps, mapDispatchToProps)(EntreprisePreviewComponent)

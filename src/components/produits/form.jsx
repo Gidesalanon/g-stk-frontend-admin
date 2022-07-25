@@ -17,7 +17,7 @@ import classnames from 'classnames';
 import SelectComponent from "../select";
 import { postEntity, putEntity } from '../../service/api';
 
-class CategorieProduitFormComponent extends Component {
+class ProduitFormComponent extends Component {
     form = new FormData();
     state = {
         model: {
@@ -38,7 +38,9 @@ class CategorieProduitFormComponent extends Component {
 
         this.setTitle = this.setTitle.bind(this);
         this.setFichier = this.setFichier.bind(this);
+        this.setValue = this.setValue.bind(this);
         this.setDescription = this.setDescription.bind(this);
+        this.setCategory = this.setCategory.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.setPublic = this.setPublic.bind(this);
 
@@ -48,14 +50,22 @@ class CategorieProduitFormComponent extends Component {
                 public: props.current.public,
                 fichier: props.current.fichier || null,
                 description: props.current.description || '',
+                client_price: props.current.client_price || '',
+                partner_price: props.current.partner_price || '',
             }
             let model = {
                 name: props.current.name,
                 public: props.current.public,
                 fichier: props.current.fichier || null,
+                client_price: props.current.client_price || '',
+                partner_price: props.current.partner_price || '',
                 description: props.current.description || '',
 
             };
+
+            if (props.current.categories) {
+                this.defaults.categorie = { label: props.current.categories.name, value: props.current.categorie_id};
+            }
 
             this.state = {
                 model: model,
@@ -98,11 +108,11 @@ class CategorieProduitFormComponent extends Component {
 
         this.setState({ loading: true });
         if (this.props.current?.id) {
-            request = putEntity('categorie_produits', this.props.current.id, formBody,  {
+            request = putEntity('produits', this.props.current.id, formBody,  {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
             })
         } else {
-            request = postEntity('categorie_produits', form, config)
+            request = postEntity('produits', form, config)
         }
 
         request.then(() => {
@@ -116,6 +126,13 @@ class CategorieProduitFormComponent extends Component {
         });
     }
 
+    setValue(e) {
+        const field = e.target.name;
+        const keyValue = { [field]: e.target.value };
+        console.log(keyValue);
+        this.setState({ model: { ...this.state.model, ...keyValue }});
+    }
+
     setTitle(e) {
         const keyValue = { name: e.target.value };
         this.setState({ model: { ...this.state.model, ...keyValue }});
@@ -124,6 +141,12 @@ class CategorieProduitFormComponent extends Component {
     setDescription(event) {
         this.setState({ model: { ...this.state.model, description: event.target.value }});
     }
+
+    setCategory(item) {
+        const keyValue = { categorie_id: item.value };
+        this.setState({ model: { ...this.state.model, ...keyValue }});
+    }
+
 
     setFichier(event) {
         const file = event.target.files[0];
@@ -171,12 +194,46 @@ class CategorieProduitFormComponent extends Component {
                                                 defaultValue={this.defaults.name}
                                                 className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('name')})}/>
                                             <div className="invalid-feedback">
-                                                Veuillez saisir un titre pour la categorie_produit.
+                                                Veuillez saisir une valeur.
                                             </div>
                                         </div>
                                     </FormGroup>
                                 </Col>
                               
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >PV</Label>
+                                        <div className="position-relative ">
+                                            <input type="text" name="annee"
+                                                onInput={this.setAnnee}
+                                                defaultValue={this.defaults.annee}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('annee')})}/>
+                                            <div className="invalid-feedback">
+                                                Veuillez saisir une valeur.
+                                            </div>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
+                            
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >Catégorie</Label>
+                                        <div className="position-relative ">
+                                            <SelectComponent setValue={this.setCategory}
+                                                endpoint="categories_all"
+                                                filter="name"
+                                                name="categorie_id"
+                                                nullable={true}
+                                                defaultValue={this.defaults.categorie}
+                                            />
+
+                                            <div className="invalid-feedback">
+                                                Veuillez selectionner une valeur.
+                                            </div>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
+                            
                                 <Col md={6}>
                                     <FormGroup>
                                         <Label for="iconLeft" >Image mis en avant</Label>
@@ -193,7 +250,37 @@ class CategorieProduitFormComponent extends Component {
                                         </div>
                                     </FormGroup>
                                 </Col>
-                                                        
+                            
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >Prix client</Label>
+                                        <div className="position-relative ">
+                                            <input type="text" name="client_price"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.client_price}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('client_price')})}/>
+                                            <div className="invalid-feedback">
+                                                Veuillez saisir une valeur.
+                                            </div>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
+                            
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >Prix partenaire</Label>
+                                        <div className="position-relative ">
+                                            <input type="text" name="partner_price"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.client_price}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('partner_price')})}/>
+                                            <div className="invalid-feedback">
+                                                Veuillez saisir une valeur.
+                                            </div>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
+                            
                                 <Col md="12">
                                     <FormGroup>
                                         <Label for="iconLeft" >Description</Label>
@@ -234,7 +321,7 @@ class CategorieProduitFormComponent extends Component {
 }
 
 const mapStateProps = (state) => ({
-    current: state.categorie_produit.current,
+    current: state.produit.current,
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -242,4 +329,4 @@ const mapDispatchToProps = (dispatch) => {
         reloadDataAfterEvent: (event) => dispatch({ type: 'reload-data', event }),
     }
 }
-export default connect(mapStateProps, mapDispatchToProps)(CategorieProduitFormComponent)
+export default connect(mapStateProps, mapDispatchToProps)(ProduitFormComponent)

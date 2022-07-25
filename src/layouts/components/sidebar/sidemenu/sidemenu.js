@@ -78,11 +78,19 @@ class SideMenuContent extends Component {
         {/* Actions */}
 {/* MANAGER */}
         <SideMenu.MenuMultiItems Icon={<BarChart2 size={18} />} name="Editions de contenus" >
-             <NavLink to="products/categories" activeclassname="active">
+             
+            <NavLink to="/projects" activeclassname="active">
+              <i className="menu-icon">
+                <Airplay size={18} />
+              </i>
+              <span className="menu-item-text"> Entreprises </span>
+            </NavLink>
+            
+             <NavLink to="/products" activeclassname="active">
               <i className="menu-icon">
                 <MessageSquare size={18} />
               </i>
-              <span className="menu-item-text">categorie_produit</span>
+              <span className="menu-item-text">Produits</span>
             </NavLink>
 {/*
             <NavLink to="/pages" activeclassname="active">
@@ -97,13 +105,6 @@ class SideMenuContent extends Component {
                 <Image size={18} />
               </i>
               <span className="menu-item-text"> Médiathèque </span>
-            </NavLink>
-            
-            <NavLink to="/projects" activeclassname="active">
-              <i className="menu-icon">
-                <Airplay size={18} />
-              </i>
-              <span className="menu-item-text"> Projets </span>
             </NavLink>
             
             <NavLink to="/partenaires" activeclassname="active">
@@ -154,7 +155,7 @@ class SideMenuContent extends Component {
             <span className="menu-item-text"> Menus </span>
           </NavLink>
        */}
-          <NavLink to="/categories">
+          <NavLink to="/products/categories">
             <i className="menu-icon">
               <PieChart size={18} />
             </i>

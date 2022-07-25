@@ -42,6 +42,8 @@ const LazyProfil = lazy( () =>import("../pages/utilisateurs/Profil"));
 const LazySetting = lazy( () =>import("../pages/utilisateurs/Setting"));
 const LazyUtilisateur = lazy( () =>import("../pages/User"));
 const LazyCategorieProduit = lazy( () =>import("../pages/CategorieProduitPage"));
+const LazyProduit = lazy( () =>import("../pages/ProduitPage"));
+const LazyEntreprise = lazy( () =>import("../pages/EntreprisePage"));
 const LazyApplication = lazy( () =>import("../pages/ApplicationPage"));
 const LazyMedia = lazy( () =>import("../pages/MediaPage"));
 const LazyMediatheque = lazy( () =>import("../pages/Mediatheque"));
@@ -78,7 +80,27 @@ class Router extends Component {
 
                <MainLayoutRoutes
                   exact
-                  path="categories/products"
+                  path="/projects"
+                  render={matchprops => (
+                     <Suspense fallback={<Spinner />}>
+                        <LazyEntreprise {...matchprops} />
+                     </Suspense>
+                  )}
+               />
+
+               <MainLayoutRoutes
+                  exact
+                  path="/products"
+                  render={matchprops => (
+                     <Suspense fallback={<Spinner />}>
+                        <LazyProduit {...matchprops} />
+                     </Suspense>
+                  )}
+               />
+
+               <MainLayoutRoutes
+                  exact
+                  path="/products/categories"
                   render={matchprops => (
                      <Suspense fallback={<Spinner />}>
                         <LazyCategorieProduit {...matchprops} />

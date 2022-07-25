@@ -19,9 +19,9 @@ class Dashboard extends Component {
       categorie_produits: 0,
       partners: 0,
       products: 0,
-      last_news: {list:[]},
+      commands: 0,
+      last_commands: {list:[]},
       last_products: {list:[]},
-      modules: 0,
       showAlert: localStorage["alreadyVisitedGuide"] !== 'true',
       isTourOpen: false,
    }
@@ -43,40 +43,41 @@ class Dashboard extends Component {
       });
       getEntity('produits').then(res => {
          this.setState({ products: res.data.total});
-      let last_products = [];
-      let data = res.data.data.filter( f => f.public == 1);
-      if(data.length){
-         for(let i=0; i < 5; i++){
-            if(data.length < i) continue;
-            last_products[i] = 
-            {
-               item: data[i]?.title,
-               priorityColor: "bg-secondary",
-               quantity: i+1
+         let last_products = [];
+         let data = res.data.data.filter( f => f.public == 1);
+         if(data.length){
+            for(let i=0; i < 5; i++){
+               if(data.length < i) continue;
+               last_products[i] = 
+               {
+                  item: data[i]?.name ,
+                  priorityColor: "bg-secondary",
+                  quantity: i+1
+               }
             }
          }
-      }
          this.setState({ last_products: {list:last_products}});
       });
-      // getEntity('modules').then(res => {
-      //    this.setState({ modules: res.data.data.length});
-      // });
-      // getEntity('news').then(res => {
-      //    let last_news = [];
-      //    let data = res.data.data.filter( f => f.public == 1);
-      //    if(data.length){
-      //       for(let i=0; i < 5; i++){
-      //          if(data.length < i) continue;
-      //          last_news[i] = 
-      //          {
-      //             item: data[i]?.title,
-      //             priorityColor: "bg-info",
-      //             quantity: i+1
-      //          }
-      //       }
-      //    }
-      //    this.setState({ last_news: {list:last_news}});
-      // });
+
+      getEntity('sellings').then(res => {
+         console.log(res);
+         // this.setState({ commands: res.data.total});
+         // let last_commands = [];
+         // let data = res.data.data.filter( f => f.public == 1);
+         // if(data.length){
+         //    for(let i=0; i < 5; i++){
+         //       if(data.length < i) continue;
+         //       last_commands[i] = 
+         //       {
+         //          item: data[i]?.name,
+         //          priorityColor: "bg-secondary",
+         //          quantity: i+1
+         //       }
+         //    }
+         // }
+         // this.setState({ last_commands: {list:last_commands}});
+      });
+      
    }
 
    onConfirm= () => {
@@ -122,7 +123,7 @@ class Dashboard extends Component {
                   </React.Fragment>
                }
             >
-               Ceci est un espace d'administration du contenu de votre site web.<br/> 
+               
                {localStorage["alreadyVisitedGuide"] !== 'false'&&<span>Vous visitez cette application pour la premiere fois.<br/></span>}
                Souhaitez-vous faire une visite guidée ?
             </SweetAlert>
@@ -130,10 +131,10 @@ class Dashboard extends Component {
             <div data-tut="body">
                <Row className="row-eq-height">
                   <Col sm="12" md="3">
-                     <Link to="/categories">
+                     <Link to="/products/categories">
                         <MinimalStatisticsBG
                            cardBgColor="gradient-blackberry"
-                           statistics={this.state.modules}
+                           statistics={this.state.categorie_produits}
                            text="Categories"
                            iconSide="right"
                         >
@@ -146,7 +147,7 @@ class Dashboard extends Component {
                      <Link to="/products">
                         <MinimalStatisticsBG
                            cardBgColor="gradient-ibiza-sunset"
-                           statistics={this.state.categorie_produits}
+                           statistics={this.state.products}
                            text="Produits"
                            iconSide="right"
                         >
@@ -158,7 +159,7 @@ class Dashboard extends Component {
                      <Link to="/commandes">
                         <MinimalStatisticsBG
                            cardBgColor="gradient-green-teal"
-                           statistics={this.state.products}
+                           statistics={this.state.commands}
                            text="Commandes"
                            iconSide="right"
                         >
@@ -183,7 +184,7 @@ class Dashboard extends Component {
                <Row className="row-eq-height">
                   <Col sm="12" md="6">
                      <DailyDietListCard
-                        dailyDietList={this.state.last_news}
+                        dailyDietList={this.state.last_commands}
                         cardTitle="Les 5 dernières commandes"
                      //  cardSubTitle="Some quick example text to build on the card."
                      />

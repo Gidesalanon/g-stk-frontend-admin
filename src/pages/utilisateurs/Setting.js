@@ -25,14 +25,6 @@ export default class Setting extends Component {
                director_position: '',
                facebook_url: '',
                twitter_url: '',
-               home_indicator_1: '',
-               home_indicator_1_value: '',
-               home_indicator_2: '',
-               home_indicator_2_value: '',
-               home_indicator_3: '',
-               home_indicator_3_value: '',
-               home_indicator_4: '',
-               home_indicator_4_value: '',
       },
       loading: false,
       formSubmitted: false,
@@ -52,14 +44,6 @@ export default class Setting extends Component {
       this.setPosition = this.setPosition.bind(this);
       this.setFacebook = this.setFacebook.bind(this);
       this.setTwitter = this.setTwitter.bind(this);
-      this.setIndicateurValue1 = this.setIndicateurValue1.bind(this);
-      this.setIndicateurValue2 = this.setIndicateurValue2.bind(this);
-      this.setIndicateurValue3 = this.setIndicateurValue3.bind(this);
-      this.setIndicateurValue4 = this.setIndicateurValue4.bind(this);
-      this.setIndicateur1 = this.setIndicateur1.bind(this);
-      this.setIndicateur2 = this.setIndicateur2.bind(this);
-      this.setIndicateur3 = this.setIndicateur3.bind(this);
-      this.setIndicateur4 = this.setIndicateur4.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
    }
 
@@ -77,14 +61,6 @@ export default class Setting extends Component {
             welcome_content: res.data.data[0]?.welcome_content || '',
             facebook_url: res.data.data[0]?.facebook_url || '',
             twitter_url: res.data.data[0]?.twitter_url || '',
-            home_indicator_1: res.data.data[0]?.home_indicator_1 || '',
-            home_indicator_1_value: res.data.data[0]?.home_indicator_1_value || '',
-            home_indicator_2: res.data.data[0]?.home_indicator_2 || '',
-            home_indicator_2_value: res.data.data[0]?.home_indicator_2_value || '',
-            home_indicator_3: res.data.data[0]?.home_indicator_3 || '',
-            home_indicator_3_value: res.data.data[0]?.home_indicator_3_value || '',
-            home_indicator_4: res.data.data[0]?.home_indicator_4 || '',
-            home_indicator_4_value: res.data.data[0]?.home_indicator_4_value || ''
          };
 
          this.setState({
@@ -184,46 +160,6 @@ export default class Setting extends Component {
       this.setState({ model: { ...this.state.model, ...keyValue }});
    }
    
-   setIndicateur1(e) {
-      const keyValue = { home_indicator_1: e.target.value };
-      this.setState({ model: { ...this.state.model, ...keyValue }});
-   }
-
-   setIndicateurValue1(e) {
-      const keyValue = { home_indicator_1_value: e.target.value };
-      this.setState({ model: { ...this.state.model, ...keyValue }});
-   }
-
-   setIndicateur2(e) {
-      const keyValue = { home_indicator_2: e.target.value };
-      this.setState({ model: { ...this.state.model, ...keyValue }});
-   }
-
-   setIndicateurValue2(e) {
-      const keyValue = { home_indicator_2_value: e.target.value };
-      this.setState({ model: { ...this.state.model, ...keyValue }});
-   }
-
-   setIndicateur3(e) {
-      const keyValue = { home_indicator_3: e.target.value };
-      this.setState({ model: { ...this.state.model, ...keyValue }});
-   }
-
-   setIndicateurValue3(e) {
-      const keyValue = { home_indicator_3_value: e.target.value };
-      this.setState({ model: { ...this.state.model, ...keyValue }});
-   }
-
-   setIndicateur4(e) {
-      const keyValue = { home_indicator_4: e.target.value };
-      this.setState({ model: { ...this.state.model, ...keyValue }});
-   }
-
-   setIndicateurValue4(e) {
-      const keyValue = { home_indicator_4_value: e.target.value };
-      this.setState({ model: { ...this.state.model, ...keyValue }});
-   }
-
    fieldInValid(field) {
       return this.state.model[field] === undefined || this.state.model[field] === null;
    }
@@ -369,93 +305,6 @@ export default class Setting extends Component {
                                        </Col>
                                     </FormGroup>
                                     
-                                    <h4 className="form-section"><FileText size={20} color="#212529" /> Quelques indicateurs</h4>
-                                    
-                                    <FormGroup row>
-                                       <Label for="projectinput1" sm={3}>Indicateur 1:</Label>
-                                       <Col sm={9}>
-                                       <Row className="d-flex">
-                                       <Col md={6}>
-                                             <input type="text" name="home_indicator_1"
-                                                onInput={this.setIndicateur1}
-                                                placeholder="Indicateur"
-                                                defaultValue={this.state.model.home_indicator_1}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('home_indicator_1')})}/>
-                                       </Col>
-                                       <Col md={6}>
-                                             <input type="text" name="home_indicator_1_value"
-                                                onInput={this.setIndicateurValue1}
-                                                placeholder="Valeur"
-                                                defaultValue={this.state.model.home_indicator_1_value}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('home_indicator_1_value')})}/>
-                                       </Col>
-                                       </Row>
-                                       </Col>
-                                    </FormGroup>
-                                    <FormGroup row>
-                                       <Label for="projectinput1" sm={3}>Indicateur 2:</Label>
-                                       <Col sm={9}>
-                                       <Row className="d-flex">
-                                       <Col md={6}>
-                                             <input type="text" name="home_indicator_2"
-                                                onInput={this.setIndicateur2}
-                                                placeholder="Indicateur"
-                                                defaultValue={this.state.model.home_indicator_2}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('home_indicator_2')})}/>
-                                       </Col>
-                                       <Col md={6}>
-                                             <input type="text" name="home_indicator_2_value"
-                                                onInput={this.setIndicateurValue2}
-                                                placeholder="Valeur"
-                                                defaultValue={this.state.model.home_indicator_2_value}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('home_indicator_2_value')})}/>
-                                       </Col>
-                                       </Row>
-                                       </Col>
-                                    </FormGroup>
-                                    <FormGroup row>
-                                       <Label for="projectinput1" sm={3}>Indicateur 3:</Label>
-                                       <Col sm={9}>
-                                       <Row className="d-flex">
-                                       <Col md={6}>
-                                             <input type="text" name="home_indicator_3"
-                                                onInput={this.setIndicateur3}
-                                                placeholder="Indicateur"
-                                                defaultValue={this.state.model.home_indicator_3}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('home_indicator_3')})}/>
-                                       </Col>
-                                       <Col md={6}>
-                                             <input type="text" name="home_indicator_3_value"
-                                                onInput={this.setIndicateurValue3}
-                                                placeholder="Valeur"
-                                                defaultValue={this.state.model.home_indicator_3_value}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('home_indicator_3_value')})}/>
-                                       </Col>
-                                       </Row>
-                                       </Col>
-                                    </FormGroup>
-                                    <FormGroup row>
-                                       <Label for="projectinput1" sm={3}>Indicateur 4:</Label>
-                                       <Col sm={9}>
-                                       <Row className="d-flex">
-                                       <Col md={6}>
-                                             <input type="text" name="home_indicator_4"
-                                                onInput={this.setIndicateur4}
-                                                placeholder="Indicateur"
-                                                defaultValue={this.state.model.home_indicator_4}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('home_indicator_4')})}/>
-                                       </Col>
-                                       <Col md={6}>
-                                             <input type="text" name="home_indicator_4_value"
-                                                onInput={this.setIndicateurValue4}
-                                                placeholder="Valeur"
-                                                defaultValue={this.state.model.home_indicator_4_value}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('home_indicator_4_value')})}/>
-                                       </Col>
-                                       </Row>
-                                       </Col>
-                                    </FormGroup> 
-
                                  </div>
                                  <div className="form-actions">
                                     <Button color="primary" type="submit" className={classnames({ 'cursor-not-allowed': this.state.loading })} block>
