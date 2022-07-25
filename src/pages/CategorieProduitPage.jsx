@@ -86,7 +86,7 @@ class CategorieProduitPage extends Component {
         </Modal>
 
         <Modal isOpen={this.state.openAddModal}>
-            <ModalHeader toggle={()=> this.setState({ openAddModal: false }) }>Ajout d'une catégorie produit</ModalHeader>
+            <ModalHeader toggle={()=> this.setState({ openAddModal: false }) }>Ajout d'une catégorie produits</ModalHeader>
             <CategorieProduitFormComponent onRequestSent={this.onCategorieProduitAdded}  />
         </Modal>
 
