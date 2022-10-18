@@ -156,7 +156,7 @@ class Dashboard extends Component {
                      </Link>
                   </Col>
                   <Col sm="12" md="3">
-                     <Link to="/commandes">
+                     <Link to="/commands">
                         <MinimalStatisticsBG
                            cardBgColor="gradient-green-teal"
                            statistics={this.state.commands}

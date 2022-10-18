@@ -87,7 +87,6 @@ class CategorieProduitListComponent extends Component {
 
     renderActions = (row) => (
         <>
-            <Button size="sm" outline title="Prévisualiser" color="success" onClick={()=>{ this.props.setPreviewCategorieProduit(row); this.setState({ openPreviewModal: true }) }}><i className="fa fa-eye"></i></Button> {"   "}
             <Button size="sm" outline title="Modifier" color="info" onClick={() => this.props.setCurrentCategorieProduit(row)}><i className="fa fa-edit"></i></Button> {"   "}
             <Button size="sm" outline title="Supprimer" color="danger" onClick={() => this.setState({ ConfirmModal: row })}><i className="fa fa-trash"></i></Button>
         </>

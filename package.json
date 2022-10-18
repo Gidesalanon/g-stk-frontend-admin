@@ -2,7 +2,7 @@
    "name": "g-stk-frontend-admin",
    "version": "0.1.0",
    "private": true,
-   "homepage": "http://localhost:3000",
+   "homepage": "https://g-stk.longrich-benin.com",
    "dependencies": {
       "@wojtekmaj/react-daterange-picker": "^3.0.0",
       "axios": "^0.19.2",
@@ -94,6 +94,5 @@
       "not ie <= 11",
       "not op_mini all"
    ],
-   "devDependencies": {},
-   "proxy": "http://127.0.0.1:8000"
+   "devDependencies": {}
 }

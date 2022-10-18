@@ -10,50 +10,52 @@ import {
     ModalBody,
     ModalFooter,
     Row,
-    CustomInput
 } from 'reactstrap';
-import classnames from 'classnames';
-import { loadFile,getEntity } from '../../service/api';
+import { getEntity } from '../../service/api';
 
 require('dotenv').config()
 class CommandePreviewComponent extends Component {
-    form = new FormData();
     state = {
         model: {
             public: 1,
             description: '',
-            products: [{ product_id: '',expiration_date: '', quantity: '' }]
+            products: [{ product_id: '', quantity: '' }]
         },
         progress: 0,
         loading: false,
-        formSubmitted: false,
         productsList: [{label:"Aucun résultat",value:""}],
-        inputFields: [{ product_id: '',expiration_date: '', quantity: '' }]
+        inputFields: [{ product_id: '', quantity: '' }]
     };
     defaults = {};
     nullableFields = [];
     constructor(props) {
 
         super();
+        this.getProduct = this.getProduct.bind(this);
         this.getProductObject = this.getProductObject.bind(this);
-        
+
         if (props.preview) {
             this.defaults = {
                 public: props.preview.public,
+                clients: props.preview.clients,
                 description: props.preview.description || '',
-                products: props.preview.command_products
+                products: props.preview.selling_products
             }
             let model = {
+                clients: props.preview.clients,
                 public: props.preview.public,
                 description: props.preview.description || '',
-                products: props.preview.command_products
+                products: props.preview.selling_products
             };
+
+            if (props.preview.categories) {
+                this.defaults.categorie = { label: props.preview.categories.name, value: props.preview.categorie_id};
+            }
 
             this.state = {
                 model: model,
-                formSubmitted: false,
                 loading: false,
-                inputFields: [{ product_id: '',expiration_date: '', quantity: '' }]
+                inputFields: [{ product_id: '', quantity: '' }]
             };
         }
     }
@@ -90,10 +92,16 @@ class CommandePreviewComponent extends Component {
                                 <Col md={12}>
                                     <FormGroup>
                                         <div className="position-relative ">
-                                            <textarea type="text" name="presentation"
-                                                defaultValue={this.state.model.description}
-                                                disabled={true}
-                                                className="form-control"/>
+                                            <span>{this.state.model.description}
+                                            </span>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={12}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >Client</Label>
+                                        <div className="position-relative ">
+                                        <span>{this.state.model.clients.lastname + ' ' + this.state.model.clients.firstname}</span>
                                         </div>
                                     </FormGroup>
                                 </Col>
@@ -103,12 +111,8 @@ class CommandePreviewComponent extends Component {
                                 
                             <div className='row col-12'>
 
-                            <Col md={5}>
+                            <Col md={8}>
                                 <p>Produits</p>
-                            </Col>
-
-                            <Col md={3}>
-                                <p>Date d'expriration</p>
                             </Col>
 
                             <Col md={2}>
@@ -119,18 +123,10 @@ class CommandePreviewComponent extends Component {
 
                             {products.map((product, index) => (
                                 <div className='row col-12' key={`${index}`}>
-                                    <Col md={5} className="pr-0">
+                                    <Col md={8} className="pr-0">
                                         <FormGroup>
                                             <div className="position-relative ">
                                                 {this.getProduct(product.product_id)}
-                                            </div>
-                                        </FormGroup>
-                                    </Col>
-                                
-                                    <Col md={3}>
-                                        <FormGroup>
-                                            <div className="position-relative ">
-                                                {product.expiration_date}
                                             </div>
                                         </FormGroup>
                                     </Col>
@@ -142,7 +138,6 @@ class CommandePreviewComponent extends Component {
                                             </div>
                                         </FormGroup>
                                     </Col>
-                                    
                                 </div>
                             ))}
                             </Row>
@@ -163,7 +158,7 @@ class CommandePreviewComponent extends Component {
 
 
 const mapStateProps = (state) => ({
-    preview: state.commande.preview,
+    preview: state.selling.preview,
 })
 
 const mapDispatchToProps = (dispatch) => {

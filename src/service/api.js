@@ -1,7 +1,6 @@
 
 import axios from 'axios';
 import Cookies from "js-cookie";
-import * as paramSerializer from 'jquery-param';
 import $ from 'jquery';
 import { toastr } from 'react-redux-toastr';
 // import AsyncStorage from '@react-native-community/async-storage'
@@ -125,4 +124,12 @@ export const putEntityByUrl = (entity_url, data, headers) => {
  */
 export const removeEntity = (entity_url, id) => {
     return axios.delete(API + entity_url + '/' + id)
+}
+
+/**
+ *
+ * @param {string} entity_url
+ */
+ export const loadFile = (entity_url) => {
+    return "/default.png";
 }

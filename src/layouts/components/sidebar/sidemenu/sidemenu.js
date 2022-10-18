@@ -107,13 +107,6 @@ class SideMenuContent extends Component {
               <span className="menu-item-text"> Médiathèque </span>
             </NavLink>
             
-            <NavLink to="/partenaires" activeclassname="active">
-              <i className="menu-icon">
-                <DollarSign size={18} />
-              </i>
-              <span className="menu-item-text"> Partenaires </span>
-            </NavLink>
-
           <NavLink to="/weblinks" activeclassname="active">
             <i className="menu-icon">
               <Link2 size={18} />
@@ -133,28 +126,35 @@ class SideMenuContent extends Component {
         {/* Importations */}
         
         {/* <SideMenu.MenuMultiItems Icon={<DownloadCloud size={18} />} name="Importations"> */}
-                        
+                  
+            <NavLink to="/clients" activeclassname="active">
+              <i className="menu-icon">
+                <DollarSign size={18} />
+              </i>
+              <span className="menu-item-text"> Clients </span>
+            </NavLink>
+      
             <NavLink to="/commands" activeclassname="active">
               <i className="menu-icon">
                 <FileText size={18} />
               </i>
               <span className="menu-item-text"> Commandes </span>
             </NavLink>
-
+            
+            <NavLink to="/sellings" activeclassname="active">
+              <i className="menu-icon">
+                <Menu size={18} />
+              </i>
+              <span className="menu-item-text"> Ventes </span>
+            </NavLink>
+        
         </SideMenu.MenuMultiItems>
         
         {/* Données de base */}
 {/* ADMIN */}
         
         <SideMenu.MenuMultiItems Icon={<Database size={18} />} name="Administration" className={classnames({ 'd-none': !(userRole===ROOT||userRole===ADMIN) })}>
-{/*           
-          <NavLink to="/menus" activeclassname="active">
-            <i className="menu-icon">
-              <Menu size={18} />
-            </i>
-            <span className="menu-item-text"> Menus </span>
-          </NavLink>
-       */}
+
           <NavLink to="/products/categories">
             <i className="menu-icon">
               <PieChart size={18} />

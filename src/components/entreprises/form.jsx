@@ -21,7 +21,6 @@ class EntrepriseFormComponent extends Component {
     state = {
         model: {
             name: null,
-            fichier: null,
             public: 1,
             presentation: ''
         },
@@ -45,13 +44,11 @@ class EntrepriseFormComponent extends Component {
             this.defaults = {
                 name: props.current.name,
                 public: props.current.public,
-                fichier: props.current.fichier || null,
                 presentation: props.current.presentation || '',
             }
             let model = {
                 name: props.current.name,
                 public: props.current.public,
-                fichier: props.current.fichier || null,
                 presentation: props.current.presentation || '',
 
             };

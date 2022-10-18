@@ -12,10 +12,9 @@ import {
     Row,
     CustomInput
 } from 'reactstrap';
-import { loadFile } from '../../service/api';
 
 require('dotenv').config()
-class EntreprisePreviewComponent extends Component {
+class ClientPreviewComponent extends Component {
     form = new FormData();
     state = {
         model: {
@@ -60,16 +59,11 @@ class EntreprisePreviewComponent extends Component {
                         <ModalBody>
                             <Row>
                                 <Col md={12}>
-                                    <iframe className="col-12" src={loadFile(process.env.REACT_APP_SERVER_ASSET+this.state.model.fichier.filename)}></iframe>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md={12}>
                                     <FormGroup>
                                         <Label for="iconLeft" >Nom</Label>
                                         <div className="position-relative ">
                                             <input type="text" name="name"
-                                                defaultValue={this.state.model.name}
+                                                defaultValue={this.state.model.lastname+' '+this.state.model.firstname}
                                                 disabled={true}
                                                 className="form-control"/>
                                         </div>
@@ -79,7 +73,7 @@ class EntreprisePreviewComponent extends Component {
                             <Row>
                                 <Col md={12}>
                                     <FormGroup>
-                                        <Label for="iconLeft" >Présentation</Label>
+                                        <Label for="iconLeft" >Commentaire</Label>
                                         <div className="position-relative ">
                                             <textarea type="text" name="presentation"
                                                 defaultValue={this.state.model.presentation}
@@ -105,7 +99,7 @@ class EntreprisePreviewComponent extends Component {
 
 
 const mapStateProps = (state) => ({
-    preview: state.entreprise.preview,
+    preview: state.client.preview,
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -113,4 +107,4 @@ const mapDispatchToProps = (dispatch) => {
         reloadDataAfterEvent: (event) => dispatch({ type: 'reload-data', event }),
     }
 }
-export default connect(mapStateProps, mapDispatchToProps)(EntreprisePreviewComponent)
+export default connect(mapStateProps, mapDispatchToProps)(ClientPreviewComponent)

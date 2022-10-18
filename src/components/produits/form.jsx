@@ -22,7 +22,6 @@ class ProduitFormComponent extends Component {
     state = {
         model: {
             name: null,
-            fichier: null,
             public: 1,
             description: ''
         },
@@ -48,23 +47,25 @@ class ProduitFormComponent extends Component {
             this.defaults = {
                 name: props.current.name,
                 public: props.current.public,
-                fichier: props.current.fichier || null,
                 description: props.current.description || '',
-                client_price: props.current.client_price || '',
-                partner_price: props.current.partner_price || '',
+                client_price: props.current.client_price || 0,
+                partner_price: props.current.partner_price || 0,
+                expiration_mail_days: props.current.expiration_mail_days || null,
+                point: props.current.point || 0,
             }
             let model = {
                 name: props.current.name,
                 public: props.current.public,
-                fichier: props.current.fichier || null,
-                client_price: props.current.client_price || '',
-                partner_price: props.current.partner_price || '',
+                point: props.current.point || 0,
+                client_price: props.current.client_price || 0,
+                expiration_mail_days: props.current.expiration_mail_days || null,
+                partner_price: props.current.partner_price || 0,
                 description: props.current.description || '',
 
             };
 
             if (props.current.categories) {
-                this.defaults.categorie = { label: props.current.categories.name, value: props.current.categorie_id};
+                this.defaults.categories = { label: props.current.categories.name, value: props.current.categories.id};
             }
 
             this.state = {
@@ -204,10 +205,10 @@ class ProduitFormComponent extends Component {
                                     <FormGroup>
                                         <Label for="iconLeft" >PV</Label>
                                         <div className="position-relative ">
-                                            <input type="text" name="annee"
-                                                onInput={this.setAnnee}
-                                                defaultValue={this.defaults.annee}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('annee')})}/>
+                                            <input type="text" name="point"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.point}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('point')})}/>
                                             <div className="invalid-feedback">
                                                 Veuillez saisir une valeur.
                                             </div>
@@ -220,11 +221,11 @@ class ProduitFormComponent extends Component {
                                         <Label for="iconLeft" >Catégorie</Label>
                                         <div className="position-relative ">
                                             <SelectComponent setValue={this.setCategory}
-                                                endpoint="categories_all"
+                                                endpoint="categorie_produits"
                                                 filter="name"
                                                 name="categorie_id"
                                                 nullable={true}
-                                                defaultValue={this.defaults.categorie}
+                                                defaultValue={this.defaults.categories}
                                             />
 
                                             <div className="invalid-feedback">
@@ -236,7 +237,7 @@ class ProduitFormComponent extends Component {
                             
                                 <Col md={6}>
                                     <FormGroup>
-                                        <Label for="iconLeft" >Image mis en avant</Label>
+                                        <Label for="iconLeft" >Image du produit</Label>
                                         <div className="position-relative ">
                                             <CustomInput type="file" id="file"
                                                 label={this.state.model.fichier ? this.state.model.fichier.name : 'Choisir un fichier'}
@@ -272,8 +273,23 @@ class ProduitFormComponent extends Component {
                                         <div className="position-relative ">
                                             <input type="text" name="partner_price"
                                                 onInput={this.setValue}
-                                                defaultValue={this.defaults.client_price}
+                                                defaultValue={this.defaults.partner_price}
                                                 className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('partner_price')})}/>
+                                            <div className="invalid-feedback">
+                                                Veuillez saisir une valeur.
+                                            </div>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
+                            
+                                <Col md={12}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >Nombre de jour pour avertir de l'expiration</Label>
+                                        <div className="position-relative ">
+                                            <input type="text" name="expiration_mail_days"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.expiration_mail_days}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('expiration_mail_days')})}/>
                                             <div className="invalid-feedback">
                                                 Veuillez saisir une valeur.
                                             </div>
@@ -293,14 +309,14 @@ class ProduitFormComponent extends Component {
                                     </FormGroup>
                                 </Col>
                             
-                                <Col xl="8" lg="12" md="12" className="mt-1">
+                                {/* <Col xl="8" lg="12" md="12" className="mt-1">
                                     <FormGroup>
                                         <Label for="iconLeft" >Publier</Label>
                                         <FormGroup check className="px-0">
                                             <Toggle checked={this.state.model.public}  onChange={this.setPublic} />
                                         </FormGroup>
                                     </FormGroup>
-                                </Col>
+                                </Col> */}
                             </Row>
                         </ModalBody>
                         <ModalFooter>

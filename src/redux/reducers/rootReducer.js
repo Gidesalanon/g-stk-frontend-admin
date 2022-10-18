@@ -9,6 +9,8 @@ import userReducer from './user';
 import categorie_produitReducer from './categorie_produit';
 import commandeReducer from './commande';
 import entrepriseReducer from './entreprise';
+import clientReducer from './client';
+import sellingReducer from './selling';
 import produitReducer from './produit';
 import mediaReducer from './media';
 import alertReducer from './alert';
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
     application: applicationReducer,
     alert: alertReducer,
     media: mediaReducer,
+    client: clientReducer,
+    selling: sellingReducer,
     entreprise: entrepriseReducer,
     commande: commandeReducer,
     categorie_produit: categorie_produitReducer,

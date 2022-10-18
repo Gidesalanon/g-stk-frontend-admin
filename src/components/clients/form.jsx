@@ -12,16 +12,13 @@ import {
     Row,
     CustomInput
 } from 'reactstrap';
-import Toggle from "react-toggle";
 import classnames from 'classnames';
-import SelectComponent from "../select";
 import { postEntity, putEntity } from '../../service/api';
 
-class CategorieProduitFormComponent extends Component {
+class ClientFormComponent extends Component {
     form = new FormData();
     state = {
         model: {
-            name: null,
             public: 1,
             description: ''
         },
@@ -35,6 +32,7 @@ class CategorieProduitFormComponent extends Component {
 
         super();
 
+        this.setValue = this.setValue.bind(this);
         this.setTitle = this.setTitle.bind(this);
         this.setFichier = this.setFichier.bind(this);
         this.setDescription = this.setDescription.bind(this);
@@ -43,13 +41,23 @@ class CategorieProduitFormComponent extends Component {
 
         if (props.current) {
             this.defaults = {
-                name: props.current.name,
+                lastname: props.current.lastname,
+                firstname: props.current.firstname,
+                address: props.current.address,
+                ifu: props.current.ifu,
                 public: props.current.public,
+                email: props.current.email,
+                phone: props.current.phone,
                 description: props.current.description || '',
             }
             let model = {
-                name: props.current.name,
+                firstname: props.current.firstname,
+                lastname: props.current.lastname,
+                address: props.current.address,
+                ifu: props.current.ifu,
+                email: props.current.email,
                 public: props.current.public,
+                phone: props.current.phone,
                 description: props.current.description || '',
 
             };
@@ -95,11 +103,11 @@ class CategorieProduitFormComponent extends Component {
 
         this.setState({ loading: true });
         if (this.props.current?.id) {
-            request = putEntity('categorie_produits', this.props.current.id, formBody,  {
+            request = putEntity('clients', this.props.current.id, formBody,  {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
             })
         } else {
-            request = postEntity('categorie_produits', form, config)
+            request = postEntity('clients', form, config)
         }
 
         request.then(() => {
@@ -111,6 +119,12 @@ class CategorieProduitFormComponent extends Component {
 
             this.setState({ loading: false });
         });
+    }
+
+    setValue(e) {
+        const field = e.target.name;
+        const keyValue = { [field]: e.target.value };
+        this.setState({ model: { ...this.state.model, ...keyValue }});
     }
 
     setTitle(e) {
@@ -159,41 +173,93 @@ class CategorieProduitFormComponent extends Component {
                     <fieldset disabled={this.state.loading}>
                         <ModalBody>
                             <Row>
-                                <Col md={6}>
+                            <Col md={6}>
                                     <FormGroup>
                                         <Label for="iconLeft" >Nom (*)</Label>
                                         <div className="position-relative ">
-                                            <input type="text" name="name"
-                                                onInput={this.setTitle}
-                                                defaultValue={this.defaults.name}
-                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('name')})}/>
+                                            <input type="text" name="firstname"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.firstname}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('firstname')})}/>
                                             <div className="invalid-feedback">
-                                                Veuillez saisir un titre pour la categorie_produit.
+                                                Veuillez saisir une valeur
                                             </div>
                                         </div>
                                     </FormGroup>
                                 </Col>
-                              
                                 <Col md={6}>
                                     <FormGroup>
-                                        <Label for="iconLeft" >Image mis en avant</Label>
+                                        <Label for="iconLeft" >Prénom (*)</Label>
                                         <div className="position-relative ">
-                                            <CustomInput type="file" id="file"
-                                                label={this.state.model.fichier ? this.state.model.fichier.name : 'Choisir un fichier'}
-                                                className={classnames({'is-invalid': this.state.formSubmitted &&
-                                                        this.fieldInValid('fichier')})}
-                                                onChange={this.setFichier}/>
-                                                {this.defaults.fichier && <img src="/default.png" className="file-preview" />}
+                                            <input type="text" name="lastname"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.lastname}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('lastname')})}/>
                                             <div className="invalid-feedback">
-                                                Veuillez selectionner un fichier.
+                                                Veuillez saisir une valeur
                                             </div>
                                         </div>
                                     </FormGroup>
                                 </Col>
-                                                        
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >Email</Label>
+                                        <div className="position-relative ">
+                                            <input type="email" name="email"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.email}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('email')})}/>
+                                            <div className="invalid-feedback">
+                                                Veuillez saisir une valeur
+                                            </div>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >Téléphone</Label>
+                                        <div className="position-relative ">
+                                            <input type="tel" name="phone"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.phone}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('phone')})}/>
+                                            <div className="invalid-feedback">
+                                                Veuillez saisir une valeur
+                                            </div>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >IFU</Label>
+                                        <div className="position-relative ">
+                                            <input type="text" name="ifu"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.ifu}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('ifu')})}/>
+                                            <div className="invalid-feedback">
+                                                Veuillez saisir une valeur
+                                            </div>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="iconLeft" >Adresse</Label>
+                                        <div className="position-relative ">
+                                            <input type="text" name="address"
+                                                onInput={this.setValue}
+                                                defaultValue={this.defaults.address}
+                                                className={classnames('form-control', {'is-invalid': this.state.formSubmitted && this.fieldInValid('address')})}/>
+                                            <div className="invalid-feedback">
+                                                Veuillez saisir une valeur
+                                            </div>
+                                        </div>
+                                    </FormGroup>
+                                </Col>
                                 <Col md="12">
                                     <FormGroup>
-                                        <Label for="iconLeft" >Description</Label>
+                                        <Label for="iconLeft" >Commentaire</Label>
                                         <div className="position-relative">
                                             <textarea type="text" onChange={this.setDescription} name="description" defaultValue={this.defaults.description}
                                                 className={classnames('form-control')}
@@ -203,14 +269,14 @@ class CategorieProduitFormComponent extends Component {
                                     </FormGroup>
                                 </Col>
                             
-                                <Col xl="8" lg="12" md="12" className="mt-1">
+                                {/* <Col xl="8" lg="12" md="12" className="mt-1">
                                     <FormGroup>
                                         <Label for="iconLeft" >Publier</Label>
                                         <FormGroup check className="px-0">
                                             <Toggle checked={this.state.model.public}  onChange={this.setPublic} />
                                         </FormGroup>
                                     </FormGroup>
-                                </Col>
+                                </Col> */}
                             </Row>
                         </ModalBody>
                         <ModalFooter>
@@ -231,7 +297,7 @@ class CategorieProduitFormComponent extends Component {
 }
 
 const mapStateProps = (state) => ({
-    current: state.categorie_produit.current,
+    current: state.client.current,
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -239,4 +305,4 @@ const mapDispatchToProps = (dispatch) => {
         reloadDataAfterEvent: (event) => dispatch({ type: 'reload-data', event }),
     }
 }
-export default connect(mapStateProps, mapDispatchToProps)(CategorieProduitFormComponent)
+export default connect(mapStateProps, mapDispatchToProps)(ClientFormComponent)

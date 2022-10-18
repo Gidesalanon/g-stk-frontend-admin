@@ -9,13 +9,14 @@ import Toggle from "react-toggle";
 import "react-toggle/style.css";
 
 const Table = ReactTable;
-const ENDPOINT = 'produits'
+const ENDPOINT = 'sellings'
 
-class ProduitListComponent extends Component {
+class SellingListComponent extends Component {
     state = {
     
         openPreviewModal: false,
         data: this.props.data,
+        productsList: [{label:"Aucun résultat",value:""}],
         loading: false,
         pages: null,
         ConfirmModal:null,
@@ -26,43 +27,39 @@ class ProduitListComponent extends Component {
         links: null,
         columns: [
             {
-                accessor: 'name',
+                accessor: 'description',
                 filterable:false,
-                Header: 'Nom'
+                Header: 'Détail'
             },
             {
-                accessor: 'categories.name',
+                accessor: 'client_id',
                 filterable:false,
-                Header: 'Catégorie',
-                Cell: ({ row: { _original } }) => <Badge className="bg-success">{_original.categories?.name}</Badge>
+                Header: 'Client',
+                Cell: ({ row: { _original } }) => <b>{_original.clients.lastname + ' ' + _original.clients.firstname}</b>
             },
             {
-                accessor: 'point',
+                accessor: 'selling_products',
                 filterable:false,
-                Header: 'PV'
+                Header: 'Produits',
+                Cell: ({ row: { _original } }) => <i>{this.renderProductsList(_original.selling_products)}</i>
             },
             {
-                accessor: 'partner_price',
+                accessor: 'created_at',
                 filterable:false,
-                Header: 'Prix partenaire',
-            },
-            {
-                accessor: 'client_price',
-                filterable:false,
-                Header: 'Prix client',
+                Header: 'Date d\'ajout',
+                Cell: ({ row: { _original } }) => Moment(_original.created_at).format("DD/MM/YYYY")
             },
             {
                 accessor: 'public',
-                Header: 'Publié',
+                Header: 'Validé',
                 width:100,
-                Cell: ({ row: { _original } }) => <Toggle checked={_original.public==1}  onChange={() => this.produitUpdatePublic(_original)} />,
+                Cell: ({ row: { _original } }) => <Toggle checked={_original.public==1}  onChange={() => this.sellingUpdatePublic(_original)} />,
                 
                 filterMethod: (filter, row) => {
                 if (filter.value === "") {
                     return true;
                 }
                 return row._original[filter.id] == filter.value;
-    
                 },
                 Filter: ({ filter, onChange }) =>
                 <select
@@ -73,9 +70,7 @@ class ProduitListComponent extends Component {
                     <option value="">Tout</option>
                     <option value={1}>Oui</option>
                     <option value={0}>Non</option>
-
                 </select>
-  
             },
             {
                 accessor: 'id',
@@ -83,10 +78,9 @@ class ProduitListComponent extends Component {
                 Header: 'Actions',
                 Cell: ({ row: { _original } }) => this.renderActions(_original)
             }]
-            
     };
 
-    removeProduit = row => {
+    removeSelling = row => {
         removeEntity(ENDPOINT, row.id).then(res => {
             this.props.reloadDataAfterEvent('deleted')
             this.props.successRemove(true)
@@ -95,14 +89,25 @@ class ProduitListComponent extends Component {
         });
     }
 
+    renderProductsList = (row) => (
+        <>
+        { row?.map((item, index) => (
+            <span key={`${index}`}>
+                {' ' + item.quantity + ' ' + this.getProduct(item.product_id)} ; 
+            </span>
+            ))
+        }
+        </>
+    );
+
     renderActions = (row) => (
         <>
-            <Button size="sm" outline title="Modifier" color="info" onClick={() => this.props.setCurrentProduit(row)}><i className="fa fa-edit"></i></Button> {"   "}
+            <Button size="sm" outline title="Prévisualiser" color="success" onClick={()=>{ this.props.setPreviewSelling(row); this.setState({ openPreviewModal: true }) }}><i className="fa fa-eye"></i></Button> {"   "}
             <Button size="sm" outline title="Supprimer" color="danger" onClick={() => this.setState({ ConfirmModal: row })}><i className="fa fa-trash"></i></Button>
         </>
     );
 
-    produitUpdatePublic = (row) => {
+    sellingUpdatePublic = (row) => {
         row.public=row.public==0?1:0;
         let id = row.id;
         delete row['id'];
@@ -130,6 +135,13 @@ class ProduitListComponent extends Component {
     }
 
     componentDidMount = () => {
+        let prods = [{label:"Aucun résultat",value:""}];
+        getEntity('products_all').then(res => {
+            res.data.data.map(product => {
+                prods.push({label:product.name,value:product.id});
+            });
+            this.setState({ productsList: prods});
+        });
         this.loadData()
     }
 
@@ -193,6 +205,17 @@ class ProduitListComponent extends Component {
         })
     }
 
+    getProduct(product_id){
+        if(this.state.productsList){
+            return this.state.productsList.find(i => i.value === product_id)?.label;
+        }
+        return 'Produit introuvable';
+    }
+
+    getProductObject(product_id){
+        if(this.state.productsList) return { label: this.state.productsList.find(i => i.value === product_id)?.label, value: product_id};
+    }
+
     render() {
         const { data, columns, pages, pagination, loading } = this.state;
         return (
@@ -202,7 +225,7 @@ class ProduitListComponent extends Component {
                     <ModalBody>Faut-il vraiment supprimer cet élément ?</ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={()=> this.setState({ ConfirmModal: null }) }>Annuler</Button>
-                        <Button color="danger" onClick={() => {this.removeProduit(this.state.ConfirmModal);this.setState({ ConfirmModal: null });}}>Supprimer</Button>
+                        <Button color="danger" onClick={() => {this.removeSelling(this.state.ConfirmModal);this.setState({ ConfirmModal: null });}}>Supprimer</Button>
                     </ModalFooter>
                 </Modal>
                 <Table
@@ -228,22 +251,22 @@ class ProduitListComponent extends Component {
 
 const mapStateProps = (state) => {
     return {
-        current: state.produit.current,
-        reload_data: state.produit.reload_data,
+        current: state.selling.current,
+        reload_data: state.selling.reload_data,
     }
 }
 
 const mapDispatchToProps = dispatch => {
 
     return {
-        setCurrentProduit: (current) => {
-            dispatch({ type: 'current-produit', current })
+        setCurrentSelling: (current) => {
+            dispatch({ type: 'current-selling', current })
         },
-        setPreviewProduit: (preview) => {
-            dispatch({ type: 'preview-produit', preview })
+        setPreviewSelling: (preview) => {
+            dispatch({ type: 'preview-selling', preview })
         },
         reloadDataAfterEvent: (event) => dispatch({ type: 'reload-data', event }),
     }
 }
 
-export default connect(mapStateProps, mapDispatchToProps)(ProduitListComponent)
+export default connect(mapStateProps, mapDispatchToProps)(SellingListComponent)

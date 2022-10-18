@@ -60,17 +60,7 @@ class CommandePage extends Component {
       <>
         
         <Row>
-          <div className="breacumbs">
-            <Link to="/">
-              <Home size={16} />
-            </Link> &nbsp; / &nbsp; 
-            <Link to="/commandes/sourcing">Entrées</Link> &nbsp; / &nbsp; 
-            <Link to="/commandes">Sorties</Link>
-          </div>
-        </Row>
-
-        <Row>
-          <ContentHeader className="col-md-6">Sorties de stock </ContentHeader>
+          <ContentHeader className="col-md-6">Entrée de stock </ContentHeader>
           <div className="text-right col-md-6">
             <Button style={{ padding:'10px' }} color="info" type="button" onClick={()=>{ this.setState({ openAddModal: true }) }}>
               <PlusCircle size={16} color="#FFF" /> Nouvelle commande
@@ -81,17 +71,17 @@ class CommandePage extends Component {
         <CommandeListComponent successRemove={this.onCommandeRemoved}/>
 
         <Modal isOpen={ this.props.preview ? true : false } toggle={() => this.props.setPreviewCommande(null)} size='lg'>
-            <ModalHeader toggle={()=> this.props.setPreviewCommande(null) }>Détails de la commande "{ this.props.preview ? this.props.preview.name : '' }"</ModalHeader>
+            <ModalHeader toggle={()=> this.props.setPreviewCommande(null) }>Détails de la commande </ModalHeader>
             <CommandePreviewComponent closePreviewModal={()=> this.props.setPreviewCommande(null) } />
         </Modal>
 
-        <Modal isOpen={this.state.openAddModal}>
-            <ModalHeader toggle={()=> this.setState({ openAddModal: false }) }>Ajout d'une commande produits</ModalHeader>
+        <Modal isOpen={this.state.openAddModal} size='lg'>
+            <ModalHeader toggle={()=> this.setState({ openAddModal: false }) }>Ajout d'une commande de produits</ModalHeader>
             <CommandeFormComponent onRequestSent={this.onCommandeAdded} />
         </Modal>
 
-        <Modal isOpen={ this.props.current ? true : false }>
-            <ModalHeader toggle={()=> this.closeEditModal() }>Modification de la commande "{ this.props.current ? this.props.current.name : '' }"</ModalHeader>
+        <Modal isOpen={ this.props.current ? true : false } size='lg'>
+            <ModalHeader toggle={()=> this.closeEditModal() }>Modification de la commande </ModalHeader>
             <CommandeFormComponent onRequestSent={this.onCommandeEdited} />
         </Modal>
       </>

@@ -9,9 +9,9 @@ import Toggle from "react-toggle";
 import "react-toggle/style.css";
 
 const Table = ReactTable;
-const ENDPOINT = 'produits'
+const ENDPOINT = 'clients'
 
-class ProduitListComponent extends Component {
+class ClientListComponent extends Component {
     state = {
     
         openPreviewModal: false,
@@ -26,36 +26,32 @@ class ProduitListComponent extends Component {
         links: null,
         columns: [
             {
-                accessor: 'name',
+                accessor: 'lastname',
                 filterable:false,
-                Header: 'Nom'
+                Header: 'Nom',
+                Cell: ({ row: { _original } }) => _original.lastname+' '+_original.firstname
             },
             {
-                accessor: 'categories.name',
+                accessor: 'email',
                 filterable:false,
-                Header: 'Catégorie',
-                Cell: ({ row: { _original } }) => <Badge className="bg-success">{_original.categories?.name}</Badge>
+                Header: 'Email'
             },
             {
-                accessor: 'point',
+                accessor: 'phone',
                 filterable:false,
-                Header: 'PV'
+                Header: 'Téléphone'
             },
             {
-                accessor: 'partner_price',
+                accessor: 'created_at',
                 filterable:false,
-                Header: 'Prix partenaire',
-            },
-            {
-                accessor: 'client_price',
-                filterable:false,
-                Header: 'Prix client',
+                Header: 'Date d\'ajout',
+                Cell: ({ row: { _original } }) => Moment(_original.created_at).format("DD/MM/YYYY à HH:mm")
             },
             {
                 accessor: 'public',
                 Header: 'Publié',
                 width:100,
-                Cell: ({ row: { _original } }) => <Toggle checked={_original.public==1}  onChange={() => this.produitUpdatePublic(_original)} />,
+                Cell: ({ row: { _original } }) => <Toggle checked={_original.public==1}  onChange={() => this.clientUpdatePublic(_original)} />,
                 
                 filterMethod: (filter, row) => {
                 if (filter.value === "") {
@@ -86,7 +82,7 @@ class ProduitListComponent extends Component {
             
     };
 
-    removeProduit = row => {
+    removeClient = row => {
         removeEntity(ENDPOINT, row.id).then(res => {
             this.props.reloadDataAfterEvent('deleted')
             this.props.successRemove(true)
@@ -97,12 +93,12 @@ class ProduitListComponent extends Component {
 
     renderActions = (row) => (
         <>
-            <Button size="sm" outline title="Modifier" color="info" onClick={() => this.props.setCurrentProduit(row)}><i className="fa fa-edit"></i></Button> {"   "}
+            <Button size="sm" outline title="Modifier" color="info" onClick={() => this.props.setCurrentClient(row)}><i className="fa fa-edit"></i></Button> {"   "}
             <Button size="sm" outline title="Supprimer" color="danger" onClick={() => this.setState({ ConfirmModal: row })}><i className="fa fa-trash"></i></Button>
         </>
     );
 
-    produitUpdatePublic = (row) => {
+    clientUpdatePublic = (row) => {
         row.public=row.public==0?1:0;
         let id = row.id;
         delete row['id'];
@@ -202,7 +198,7 @@ class ProduitListComponent extends Component {
                     <ModalBody>Faut-il vraiment supprimer cet élément ?</ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={()=> this.setState({ ConfirmModal: null }) }>Annuler</Button>
-                        <Button color="danger" onClick={() => {this.removeProduit(this.state.ConfirmModal);this.setState({ ConfirmModal: null });}}>Supprimer</Button>
+                        <Button color="danger" onClick={() => {this.removeClient(this.state.ConfirmModal);this.setState({ ConfirmModal: null });}}>Supprimer</Button>
                     </ModalFooter>
                 </Modal>
                 <Table
@@ -228,22 +224,22 @@ class ProduitListComponent extends Component {
 
 const mapStateProps = (state) => {
     return {
-        current: state.produit.current,
-        reload_data: state.produit.reload_data,
+        current: state.client.current,
+        reload_data: state.client.reload_data,
     }
 }
 
 const mapDispatchToProps = dispatch => {
 
     return {
-        setCurrentProduit: (current) => {
-            dispatch({ type: 'current-produit', current })
+        setCurrentClient: (current) => {
+            dispatch({ type: 'current-client', current })
         },
-        setPreviewProduit: (preview) => {
-            dispatch({ type: 'preview-produit', preview })
+        setPreviewClient: (preview) => {
+            dispatch({ type: 'preview-client', preview })
         },
         reloadDataAfterEvent: (event) => dispatch({ type: 'reload-data', event }),
     }
 }
 
-export default connect(mapStateProps, mapDispatchToProps)(ProduitListComponent)
+export default connect(mapStateProps, mapDispatchToProps)(ClientListComponent)

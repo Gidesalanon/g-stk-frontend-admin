@@ -9,13 +9,14 @@ import Toggle from "react-toggle";
 import "react-toggle/style.css";
 
 const Table = ReactTable;
-const ENDPOINT = 'sellings'
+const ENDPOINT = 'commands'
 
 class CommandeListComponent extends Component {
     state = {
     
         openPreviewModal: false,
         data: this.props.data,
+        productsList: [{label:"Aucun résultat",value:""}],
         loading: false,
         pages: null,
         ConfirmModal:null,
@@ -26,30 +27,25 @@ class CommandeListComponent extends Component {
         links: null,
         columns: [
             {
-                accessor: 'name',
+                accessor: 'description',
                 filterable:false,
-                Header: 'Nom'
+                Header: 'Détail'
             },
             {
-                accessor: 'category.name',
+                accessor: 'command_products',
                 filterable:false,
-                Header: 'Catégorie',
-                Cell: ({ row: { _original } }) => <Badge className="bg-success">{_original.modules?.name}</Badge>
-            },
-            {
-                accessor: 'expiration_date',
-                filterable:false,
-                Header: 'Péremption'
+                Header: 'Produits',
+                Cell: ({ row: { _original } }) => <i>{this.renderProductsList(_original.command_products)}</i>
             },
             {
                 accessor: 'created_at',
                 filterable:false,
                 Header: 'Date d\'ajout',
-                Cell: ({ row: { _original } }) => Moment(_original.created_at).format("DD/MM/YYYY à HH:mm")
+                Cell: ({ row: { _original } }) => Moment(_original.created_at).format("DD/MM/YYYY")
             },
             {
                 accessor: 'public',
-                Header: 'Publié',
+                Header: 'Validé',
                 width:100,
                 Cell: ({ row: { _original } }) => <Toggle checked={_original.public==1}  onChange={() => this.commandeUpdatePublic(_original)} />,
                 
@@ -91,10 +87,20 @@ class CommandeListComponent extends Component {
         });
     }
 
+    renderProductsList = (row) => (
+        <>
+        { row?.map((item, index) => (
+            <span key={`${index}`}>
+                {' ' + item.quantity + ' ' + this.getProduct(item.product_id)} ; 
+            </span>
+            ))
+        }
+        </>
+    );
+
     renderActions = (row) => (
         <>
             <Button size="sm" outline title="Prévisualiser" color="success" onClick={()=>{ this.props.setPreviewCommande(row); this.setState({ openPreviewModal: true }) }}><i className="fa fa-eye"></i></Button> {"   "}
-            <Button size="sm" outline title="Modifier" color="info" onClick={() => this.props.setCurrentCommande(row)}><i className="fa fa-edit"></i></Button> {"   "}
             <Button size="sm" outline title="Supprimer" color="danger" onClick={() => this.setState({ ConfirmModal: row })}><i className="fa fa-trash"></i></Button>
         </>
     );
@@ -127,6 +133,13 @@ class CommandeListComponent extends Component {
     }
 
     componentDidMount = () => {
+        let prods = [{label:"Aucun résultat",value:""}];
+        getEntity('products_all').then(res => {
+            res.data.data.map(product => {
+                prods.push({label:product.name,value:product.id});
+            });
+            this.setState({ productsList: prods});
+        });
         this.loadData()
     }
 
@@ -188,6 +201,17 @@ class CommandeListComponent extends Component {
         this.setState({filtered}, ()=>{
             this.loadData()
         })
+    }
+
+    getProduct(product_id){
+        if(this.state.productsList){
+            return this.state.productsList.find(i => i.value === product_id)?.label;
+        }
+        return 'Produit introuvable';
+    }
+
+    getProductObject(product_id){
+        if(this.state.productsList) return { label: this.state.productsList.find(i => i.value === product_id)?.label, value: product_id};
     }
 
     render() {
